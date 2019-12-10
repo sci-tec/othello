@@ -1,0 +1,146 @@
+#match {
+  .myButton {
+    box-shadow: 3px 4px 0px 0px #899599;
+    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    background-color:#ededed;
+    border-radius:15px;
+    border:1px solid #d6bcd6;
+    display:inline-block;
+    cursor:pointer;
+    color:#3a8a9e;
+    /* font-family:Arial; */
+    font-size:28px;
+    padding:3px 8px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #e1e2ed;
+  }
+  .myButton:hover {
+    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    background-color:#bab1ba;
+  }
+  .myButton:active {
+    position:relative;
+    top:1px;
+  }
+  /* ボタン２  */
+  .myButton1 {
+    box-shadow: 3px 4px 0px 0px #899599;
+    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    background-color:#ededed;
+    border-radius:15px;
+    border:1px solid #d6bcd6;
+    display:inline-block;
+    cursor:pointer;
+    color:#3a8a9e;
+    /* font-family:Arial; */
+    font-size:28px;
+    padding:3px 8px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #e1e2ed;
+  }
+  .myButton1:hover {
+    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    background-color:#bab1ba;
+  }
+  .myButton1:active {
+    position:relative;
+    top:1px;
+  }
+  // ボタン３
+  .myButton2 {
+    box-shadow: 3px 4px 0px 0px #899599;
+    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    background-color:#ededed;
+    border-radius:15px;
+    border:1px solid #d6bcd6;
+    display:inline-block;
+    cursor:pointer;
+    color:#3a8a9e;
+    /* font-family:Arial; */
+  font-size:20px;
+  font-weight: bolder;
+    padding:3px 8px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #e1e2ed;
+  }
+  .myButton2:hover {
+    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    background-color:#bab1ba;
+  }
+  .myButton2:active {
+    position:relative;
+    top:1px;
+  }
+  //ボタン４
+  .myButton3 {
+    background-color:#44c767;
+    border-radius:28px;
+    border:1px solid #18ab29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:16px;
+    padding:3px 15px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+  }
+  .myButton3:hover {
+    background-color:#5cbf2a;
+  }
+  .myButton3:active {
+    position:relative;
+    top:1px;
+  }
+  //ボタン５
+  .myButton4 {
+    box-shadow:inset 0px 0px 6px 0px #ffffff;
+    background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+    background-color:#f9f9f9;
+    border-radius:6px;
+    border:1px solid #dcdcdc;
+    display:inline-block;
+    cursor:pointer;
+    color:#666666;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+  }
+  .myButton4:hover {
+    background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+    background-color:#e9e9e9;
+  }
+  .myButton4:active {
+    position:relative;
+    top:1px;
+  }
+  //ボタン６
+  .myButton5 {
+    box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+    background:linear-gradient(to bottom, #fc8d83 5%, #e4685d 100%);
+    background-color:#fc8d83;
+    border-radius:6px;
+    border:1px solid #d83526;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #b23e35;
+  }
+  .myButton5:hover {
+    background:linear-gradient(to bottom, #e4685d 5%, #fc8d83 100%);
+    background-color:#e4685d;
+  }
+  .myButton5:active {
+    position:relative;
+    top:1px;
+  }
+}
+
