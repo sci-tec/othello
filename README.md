@@ -1,8 +1,14 @@
 ## セットアップ手順
-任意のディレクトリに移動したあと下記コマンドを実行
+
+1. GitHubアカウントを作成しログイン
+2. https://github.com/sci-tec/othello に移動してFork
+3. 自分のGitHubアカウントにForkしたリポジトリがあるので、移動(おそらく2.が済めば自動的に移動しています)
+4. 作業ディレクトリへ移動
+5. git clone 3.でフォークしたリポジトリ (注意: 2をクローンしないように)
+6. 下記コマンドを順に実行
 ```
-git clone https://github.com/canistbir/scitec.git
-cd scitec/master
+cd othello
 npm install
 gulp
 ```
+
