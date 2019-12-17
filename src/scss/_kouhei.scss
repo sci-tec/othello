@@ -1,22 +1,27 @@
 #top_1 {
   .dai{
-    float: none;
+    display: flex;
   }
   
   .waku1{
-    display: inline-block;
     padding: 40px 10px 0;
     margin-left: 14.3px;
     text-align: center;
-    
   }
   
-  .black{
-  float: left;
+  .wakuname{
+    display: flex;
+  }
+  
+  .komakuro{
+    font-size: 50px;
+  }
+
+  .namewaku{
+    display: flex;
   }
   
   .name1{
-    float: right;
     padding-left: 20px;
     padding-top: 7px;
   }
@@ -30,19 +35,16 @@
   }
   
   .waku2{
-    float: right;
-    display: inline-block;
     padding: 40px 10px 0;
     margin-left: 14.3px;
     text-align: center;
   }
   
   .white{
-  float: left;
+
   }
   
   .name2{
-    float: right;
     padding-left: 20px;
     padding-top: 7px;
   
