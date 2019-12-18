@@ -72,4 +72,14 @@ git pull root master
 
 ## MAMPとの連携(PHP)
 
-MAMPを起動して、Webサーバのルートディレクトリをdistディレクトリに設定する
+MAMPを起動して、Webサーバのルートディレクトリをdistディレクトリに設定する。
+
+1. MAMPを起動
+2. Preferences -> Wev server のDocument rootを ワークツリーの distディレクトリに設定する
+3. ターミナルで、distディレクトリに移動し、下記コマンドでpusherに必要なファイルをインストール
+`composer require pusher/pusher-php-server`
+4. ブラウザで localhost/client.php を開く(MAMP設定によりポート番号が違う可能性があります)
+5. ブラウザで localhost/sernder.php を開くと、4.のページに通知が来る事が確認できます
+
+以上
+
