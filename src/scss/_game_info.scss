@@ -1,0 +1,67 @@
+#new_game {
+  .info {
+    border: 1px solid #000;
+    .player_first {
+      position: absolute;
+      left: 5%;
+      width: 40%;
+      height: 100%;
+      // background: rgba(0, 0, 0, 0.3);
+      .color {
+        margin: 5px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #000;
+        border: 1px solid #000;
+      }
+      .player_name {
+        height: 50%;
+        width: 70%;
+        position: absolute;
+        top: 0;
+        left: 12%;
+        border: 1px solid #000;
+        // background: rgba(255, 4, 4, 0.3);
+      }
+      .time_limit {
+        margin-left: 5px;
+        position: absolute;
+      }
+    }
+    .player_second {
+      position: absolute;
+      left: 55%;
+      width: 40%;
+      height: 100%;
+      // background: rgba(21, 250, 0, 0.3);
+      .color {
+        margin: 5px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgb(211, 211, 211);
+        border: 1px solid rgb(211, 211, 211);
+      }
+      .player_name {
+        height: 50%;
+        width: 70%;
+        position: absolute;
+        top: 0;
+        left: 12%;
+        border: 1px solid #000;
+        // background: rgba(255, 4, 4, 0.3);
+      }
+      .time_limit {
+        margin-left: 5px;
+        position: absolute;
+      }
+    }
+    .vs {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%);
+    }
+  }
+}
