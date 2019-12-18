@@ -68,3 +68,8 @@ git pull root master
 ```
 
 これは、`git remote -v` で表示される予め設定していた名前の`root` リポジトリから `master` ブランチをpullしてくるという意味になります。
+
+
+## MAMPとの連携(PHP)
+
+MAMPを起動して、Webサーバのルートディレクトリをdistディレクトリに設定する
