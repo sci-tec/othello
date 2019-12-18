@@ -1,0 +1,106 @@
+@charset "utf-8";
+
+@import "game_board";
+@import "game_chat";
+
+@import "game_info";
+
+#new_game {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+
+  .board {
+    position: absolute;
+    top: 1%;
+    left: 34.5%;
+    transform: translate(-50%);
+    width: 480px;
+    height: 480px;
+  }
+  .chat {
+    margin: 10px;
+    position: absolute;
+    right: 0;
+    width: 30%;
+    height: 96%;
+  }
+  .info {
+    margin: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 67%;
+    height: 15%;
+  }
+}
+@media screen and (max-height: 550px) {
+  #new_game {
+    .board {
+      position: absolute;
+      top: 5%;
+      left: 35%;
+    }
+  }
+}
+
+@media screen and (max-height: 590px) {
+  #new_game {
+    .board {
+      position: absolute;
+      top: 8%;
+      left: 35%;
+      width: 400px;
+      height: 400px;
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  #new_game {
+    .chat {
+      margin: 5px;
+      height: 98%;
+    }
+    .info {
+      margin: 5px;
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  #new_game {
+    .board {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+    }
+    .chat {
+      margin-left: 0;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+      width: 98vw;
+      height: 18%;
+    }
+    .info {
+      margin-left: 0;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+      width: 98vw;
+      height: 10%;
+    }
+  }
+}
+@media screen and (max-width: 410px) {
+  #new_game {
+    .board {
+      position: absolute;
+      top: 0%;
+      transform: translate(-50%, 50%);
+      width: 320px;
+      height: 320px;
+    }
+  }
+}
