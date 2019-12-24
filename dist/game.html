@@ -15,22 +15,16 @@
     <div class="chat"></div>
     <div class="info">
       <div class="player_first">
-        <div class="color">
-          <!-- black -->
-        </div>
+        <div class="color"></div>
         <div class="player_name">
           player name
-          <!-- player name -->
         </div>
         <p class="time_limit">残り0秒</p>
       </div>
       <div class="player_second">
-        <div class="color">
-          <!-- white -->
-        </div>
+        <div class="color"></div>
         <div class="player_name">
           player name
-          <!-- player name -->
         </div>
         <p class="time_limit">残り0秒</p>
       </div>
