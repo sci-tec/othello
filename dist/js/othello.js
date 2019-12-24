@@ -1,25 +1,15 @@
-var row,
-  yAxis,
-  xAxis,
-  player,
-  myColor,
-  opponentColor,
-  pieces,
-  hint,
-  notEmpty,
-  A;
+var row, yAxis, xAxis, player, myColor, opponentColor, pieces, hint;
 row = [];
 yAxis = 8;
 xAxis = 8;
-hint = '<div class="hint"></div>';
 player = 0; // 0:先攻(黒), 1:後攻(白)
 myColor = 0;
 opponentColor = 1;
-notEmpty = 4;
-catPut = [];
 
 $(function() {
   initBoard();
+  checkHint();
+  boardCheck();
   putPieces();
 });
 
@@ -72,10 +62,50 @@ function initInfo() {
   }
 }
 
-function hint(array) {
+function checkHint() {
+  // ヒントを表示させる場所を探す
+  searchHint([-1, 0]);
+  searchHint([1, 0]);
+  searchHint([0, -1]);
+  searchHint([0, 1]);
+  searchHint([-1, -1]);
+  searchHint([-1, 1]);
+  searchHint([1, -1]);
+  searchHint([1, 1]);
+}
+
+function searchHint(direction) {
+  var chainX, chainY;
   for (var y = 0; y < yAxis; y++) {
     for (var x = 0; x < xAxis; x++) {
-      if (row[y][x].contents === "" && array.length !== 0) {
+      chainY = y + direction[0];
+      chainX = x + direction[1];
+      if (chainY >= 0 && chainY < 8 && chainX >= 0 && chainX < 8) {
+        while (
+          row[y][x].contents === "" &&
+          row[chainY][chainX].contents === opponentColor
+        ) {
+          if (
+            !row[chainY + direction[0]] ||
+            !row[chainY + direction[0]][chainX + direction[1]]
+          ) {
+            break;
+          } else if (
+            row[chainY + direction[0]][chainX + direction[1]].contents ===
+            myColor
+          ) {
+            if (!player) {
+              hint = '<div class="hint0"></div>';
+              $(`.x${x}-y${y}`)[0].innerHTML = hint;
+            } else {
+              hint = '<div class="hint1"></div>';
+              $(`.x${x}-y${y}`)[0].innerHTML = hint;
+            }
+            break;
+          }
+          chainY += direction[0];
+          chainX += direction[1];
+        }
       }
     }
   }
@@ -87,59 +117,47 @@ function putPieces() {
       for (var x = 0; x < xAxis; x++) {
         if (
           this.classList[1] === row[y][x].coordinates &&
-          row[y][x].contents === ""
+          row[y][x].contents === "" &&
+          this.innerHTML === hint
         ) {
-          changePieces(search(x, y, [-1, 0], "T")); // [y,x]
-          changePieces(search(x, y, [1, 0], "B"));
-          changePieces(search(x, y, [0, -1], "L"));
-          changePieces(search(x, y, [0, 1], "R"));
-          changePieces(search(x, y, [-1, -1], "TL"));
-          changePieces(search(x, y, [-1, 1], "TR"));
-          changePieces(search(x, y, [1, -1], "BL"));
-          changePieces(search(x, y, [1, 1], "BR"));
-          // console.log(row[y][x].coordinates, catPut);
-          if (catPut.length !== 0) {
-            // console.log(catPut);
-            catPut = [];
-            this.innerHTML = `<div class="pieces${player}"></div>`;
-            row[y][x].contents = player;
+          // 駒の色を変更
+          changePieces(search(x, y, [-1, 0])); // [y,x]
+          changePieces(search(x, y, [1, 0]));
+          changePieces(search(x, y, [0, -1]));
+          changePieces(search(x, y, [0, 1]));
+          changePieces(search(x, y, [-1, -1]));
+          changePieces(search(x, y, [-1, 1]));
+          changePieces(search(x, y, [1, -1]));
+          changePieces(search(x, y, [1, 1]));
+          this.innerHTML = `<div class="pieces${player}"></div>`;
+          row[y][x].contents = player;
 
-            // プレイヤーを変える
-            changePlayer();
+          // プレイヤーを変える
+          changePlayer();
 
-            notEmpty++;
-            if (notEmpty === 64) {
-              decideWinner();
-            }
-          }
+          // ヒントの表示をリセット
+          resetHint();
+          checkHint();
+          // ボード内を監視
+          boardCheck();
         }
       }
     }
   });
 }
 
-function search(x, y, direction, D) {
+function search(x, y, direction) {
   var chainY = y + direction[0];
   var chainX = x + direction[1];
   var change = [];
-  if (
-    chainY >= 0 &&
-    chainY < 8 &&
-    chainX >= 0 &&
-    chainX < 8 &&
-    chainY + direction[0] >= 0 &&
-    chainY + direction[0] < 8 &&
-    chainX + direction[1] >= 0 &&
-    chainX + direction[1] < 8
-  ) {
+  if (chainY >= 0 && chainY < 8 && chainX >= 0 && chainX < 8) {
     while (row[chainY][chainX].contents === opponentColor) {
-      // console.log(row[chainY][chainX].coordinates, opponentColor);
       change.push(row[chainY][chainX]);
-      // console.log(chainY, chainX, D);
-      if (row[chainY + direction[0]][chainX + direction[1]].contents === "") {
-        // console.log(
-        //   row[chainY + direction[0]][chainX + direction[1]].coordinates
-        // );
+      if (
+        !row[chainY + direction[0]] ||
+        !row[chainY + direction[0]][chainX + direction[1]] ||
+        row[chainY + direction[0]][chainX + direction[1]].contents === ""
+      ) {
         change = [];
         break;
       } else if (
@@ -157,8 +175,6 @@ function search(x, y, direction, D) {
 function changePieces(array) {
   var grid;
   if (array.length !== 0) {
-    // console.log(array.length);
-    catPut.push(array.length);
     for (let i = 0; i < array.length; i++) {
       grid = $(`.${array[i].coordinates}`)[0];
       grid.innerHTML = `<div class="pieces${player}"></div>`;
@@ -179,6 +195,56 @@ function changePlayer() {
   }
 }
 
+function resetHint() {
+  for (var y = 0; y < yAxis; y++) {
+    for (var x = 0; x < xAxis; x++) {
+      if ($(`.x${x}-y${y}`)[0].innerHTML === hint) {
+        $(`.x${x}-y${y}`)[0].innerHTML = '<div class="pieces"></div>';
+      }
+    }
+  }
+}
+
+function boardCheck() {
+  var hintNum, hint0, hint1, notEmpty, black, white;
+  hintNum = 0;
+  hint0 = 0;
+  hint1 = 0;
+  notEmpty = 0;
+  black = 0;
+  white = 0;
+  for (var y = 0; y < yAxis; y++) {
+    for (var x = 0; x < xAxis; x++) {
+      if ($(`.x${x}-y${y}`)[0].innerHTML === '<div class="hint0"></div>')
+        hint0++;
+      if ($(`.x${x}-y${y}`)[0].innerHTML === '<div class="hint1"></div>')
+        hint1++;
+      if (row[y][x].contents === 0 || row[y][x].contents === 1) notEmpty++;
+      if (row[y][x].contents === 0) black++;
+      if (row[y][x].contents === 1) white++;
+    }
+  }
+  if ((!hint0 && player === 0) || (!hint1 && player === 1)) {
+    changePlayer();
+    checkHint();
+    for (var y = 0; y < yAxis; y++) {
+      for (var x = 0; x < xAxis; x++) {
+        if ($(`.x${x}-y${y}`)[0].innerHTML === hint) {
+          hintNum++;
+        }
+      }
+    }
+  }
+  if (
+    notEmpty === 64 ||
+    (!hint0 && !hint1 && notEmpty !== 64 && !hintNum) ||
+    !black ||
+    !white
+  )
+    // 対戦結果を表示
+    decideWinner();
+}
+
 function decideWinner() {
   var black = 0;
   var white = 0;
@@ -193,9 +259,12 @@ function decideWinner() {
   }
   if (black > white) {
     console.log("winner Black!!");
+    console.log(`black:${black} white:${white}`);
   } else if (black < white) {
     console.log("winner White!!");
+    console.log(`black:${black} white:${white}`);
   } else {
     console.log("This game is a draw...");
+    console.log(`black:${black} white:${white}`);
   }
 }
