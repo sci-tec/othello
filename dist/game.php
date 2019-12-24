@@ -12,7 +12,15 @@
   </head>
   <body id="new_game">
     <div class="board"></div>
-    <div class="chat"></div>
+    <div class="chat">
+    <iframe id="inlineFrameExample"
+    title="Inline Frame Example"
+    width="100%"
+    height="100%"
+    src="chat.php">
+</iframe>
+
+    </div>
     <div class="info">
       <div class="player_first">
         <div class="color"></div>
