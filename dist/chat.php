@@ -6,26 +6,7 @@
 <link rel="stylesheet"  href="./css/style.css">
 <script src="./js/app.js"></script>
 </head>
-<body id="game_chat">
-
-    <div id="gamevs" class="dai">
-        <div class="waku1">
-            <img src="./img/koma_kuro.png" width="40px" height="40px" class="black">
-            <div class="name1"><form><input type="text" size="15px" class="boder1"></form></div>
-            <p class="sente">先手</p>
-            <p class="byou1">残15秒</p>
-        </div>
-        <div class="vsmoji">
-            <p class="vs">VS</p>
-        </div>
-        <div class="waku2">
-            <img src="./img/koma_siro.png" width="40px" height="40px" class="white">
-            <div class="name2"><form><input type="text" size="15px" class="boder1"></form></div>
-            <p class="gote">後手</p>
-            <p class="byou2">残15秒</p>
-        </div>
-    </div>
-            
+<body id="game_chat">            
     <div id="gamechatto" align="center">
         <h1>チャット</h1>
         <form method="post" action="chat.php">
@@ -37,9 +18,6 @@
         <br>チャット履歴
         <section>
     </form>
- 
- 
- 
 </body>
 
     <?php // DBからデータ(投稿内容)を取得 
@@ -100,13 +78,5 @@
         ?>
     </section>
     </div>
-
-<div id="navi">
-    <a href="index.html">TOP</a>
-    <a href="match_2.html">MATCH</a>
-    <a href="roomsearch_3.html">ROOM SEARCH</a>
-    <a href="roommake_4.html">ROOM MAKE</a>
-    <a href="game.html">GAME</a>
-</div>
 </body>
 </html>
