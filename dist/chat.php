@@ -8,12 +8,12 @@
 </head>
 <body id="game_chat">            
     <div id="gamechatto" align="center">
-        <h1>チャット</h1>
+    <div class="tytto">チャット</div>
         <form method="post" action="chat.php">
-        名前　　　　<input type="text" name="name">
-        メッセージ　<input type="text" name="message">
+       <div class="font"> 名前　　　　<input type="text" name="name"　size="25" placeholder="名前を入力"> </div>
+       <div class="font"> メッセージ　<input type="text" name="message"　size="25" placeholder="メッセージ入力"></div>
  
-        <button name="send" type="submit">送信</button>
+        <button class="send" type="submit">送信</button>
  
         <br>チャット履歴
         <section>
