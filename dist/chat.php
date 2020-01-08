@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>チャット</title>
 <link rel="stylesheet"  href="./css/style.css">
-<script src="./js/app.js"></script>
 </head>
 <body id="game_chat">            
     <div id="gamechatto" align="center">
