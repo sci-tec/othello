@@ -1,11 +1,11 @@
 #new_game {
   .info {
-    border: 1px solid #000;
+    border: 2px solid #797979;
     .player_first {
       position: absolute;
       left: 5%;
-      width: 40%;
-      height: 100%;
+      width: 60%;
+      height: 20px;
       .color {
         margin: 5px;
         width: 28px;
@@ -20,7 +20,7 @@
         position: absolute;
         top: 0;
         left: 12%;
-        border: 1px solid #000;
+        
       }
       .time_limit {
         margin-left: 5px;
@@ -29,9 +29,10 @@
     }
     .player_second {
       position: absolute;
-      left: 55%;
-      width: 40%;
-      height: 100%;
+      left: 5%;
+      width: 60%;
+      height: 20%;
+      top:50%;
       .color {
         margin: 5px;
         width: 28px;
@@ -46,7 +47,7 @@
         position: absolute;
         top: 0;
         left: 12%;
-        border: 1px solid #000;
+      
       }
       .time_limit {
         margin-left: 5px;
@@ -56,8 +57,10 @@
     .vs {
       position: absolute;
       top: 20%;
-      left: 50%;
+      left: 25%;
       transform: translate(-50%);
     }
+    
+    
   }
 }
