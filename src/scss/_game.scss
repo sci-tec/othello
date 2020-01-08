@@ -6,6 +6,7 @@
 @import "game_info";
 
 #new_game {
+  background: url('../img/a.jpeg');
   position: relative;
   margin: 0;
   padding: 0;
@@ -24,14 +25,19 @@
     position: absolute;
     right: 0;
     width: 30%;
-    height: 96%;
+    height: 66%;
+    top: 30%;
   }
   .info {
     margin: 10px;
+    margin-right: 6px;
     position: absolute;
     bottom: 0;
-    width: 67%;
-    height: 15%;
+    right: 0;
+    top:0;
+    width: 30%;
+    height: 29%;
+    
   }
 }
 @media screen and (max-height: 550px) {
