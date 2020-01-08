@@ -44,5 +44,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="js/othello.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
