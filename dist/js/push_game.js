@@ -8,6 +8,13 @@
  });
 
  var channel = pusher.subscribe('table001');
- channel.bind('my-event', function(data) {
+
+ channel.bind('plot', function(data) {
+   console.log("plot");
    console.log(JSON.stringify(data));
  });
+
+ channel.bind('chat', function(data) {
+    console.log("chat");
+    console.log(JSON.stringify(data));
+  });
