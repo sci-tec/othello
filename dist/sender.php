@@ -23,7 +23,17 @@
   );
 
   $data['message'] = 'hello world';
-  $pusher->trigger('my-channel', 'my-event', $data);
+  // $pusher->trigger('my-channel', 'my-event', $data);
+
+  $type = $_GET["t"];
+
+  $params["x"] = $_GET["x"];
+  $params["y"] = $_GET["y"];
+  $params["m"] = $_GET["m"];
+
+  function sendMessage($type, $params) {
+        $pusher->trigger('table001', $type, $data);
+  }
 ?>
 
 </body>
