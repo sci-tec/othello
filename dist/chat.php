@@ -43,7 +43,7 @@
             function connectDB() {
                 $user = "root";
                 $pass = "root";
-                $dbh = new PDO('mysql:host=localhost:8889;dbname=othello;charset=utf8', $user, $pass);
+                $dbh = new PDO('mysql:host=localhost:3307;dbname=othello;charset=utf8', $user, $pass);
 
                 return $dbh;
             }
