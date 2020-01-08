@@ -1,3 +1,5 @@
+/**/
+
 var row, yAxis, xAxis, player, myColor, opponentColor, pieces, hint;
 row = [];
 yAxis = 8;

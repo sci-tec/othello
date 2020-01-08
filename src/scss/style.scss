@@ -12,7 +12,16 @@
 #navi {
   font-size: 12px;
   position: fixed;
-  top: 0;
-  background-color: #0003;
-  padding: 10px;
+  top: 10px;
+  left: 0px;
+  a {
+    padding: 5px;
+    background-color: #fffd;
+    color: #000;
+    text-decoration: none;
+    &:hover {
+      color: #fff;
+      background-color: #000d;
+    }
+  }
 }

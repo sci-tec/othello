@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>チャット</title>
 <link rel="stylesheet"  href="./css/style.css">
-<script src="./js/app.js"></script>
 </head>
 <body id="game_chat">            
     <div id="gamechatto" align="center">
@@ -44,7 +43,7 @@
             function connectDB() {
                 $user = "root";
                 $pass = "root";
-                $dbh = new PDO('mysql:host=localhost:8889;dbname=othello;charset=utf8', $user, $pass);
+                $dbh = new PDO('mysql:host=localhost:3307;dbname=othello;charset=utf8', $user, $pass);
 
                 return $dbh;
             }
