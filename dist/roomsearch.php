@@ -18,7 +18,7 @@
     <div class="container">
         <div class="content">
 
-        <h1>ようこそ<?php echo $_GET["player1"]; ?>サン</h1>
+        <h1>ようこそ<?php echo $_GET["player"]; ?>サン</h1>
         
     <div class="row">
         <input type="text" name="room" placeholder="ルーム名" class="room">
