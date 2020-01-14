@@ -25,15 +25,21 @@
   $data['message'] = 'hello world';
   // $pusher->trigger('my-channel', 'my-event', $data);
 
+  $tableId = $_GET["tId"];
   $type = $_GET["t"];
 
   $params["x"] = $_GET["x"];
   $params["y"] = $_GET["y"];
   $params["m"] = $_GET["m"];
 
-  function sendMessage($type, $params) {
-        $pusher->trigger('table001', $type, $data);
-  }
+  // $pusher->trigger($tableId, $type, $params);
+  $pusher->trigger("table001", $type, $params);
+
+  // sendMessage($type,$params);
+
+  // function sendMessage($type, $params) {
+  //       $pusher->trigger('table001', $type, $params);
+  // }
 ?>
 
 </body>

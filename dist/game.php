@@ -12,18 +12,18 @@
 <body id="new_game">
     <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
     <script>
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    // // Enable pusher logging - don't include this in production
+    // Pusher.logToConsole = true;
 
-    var pusher = new Pusher('ac2b1faa8b9a8094de41', {
-        cluster: 'ap3',
-        forceTLS: true
-    });
+    // var pusher = new Pusher('ac2b1faa8b9a8094de41', {
+    //     cluster: 'ap3',
+    //     forceTLS: true
+    // });
 
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-        alert(JSON.stringify(data));
-    });
+    // var channel = pusher.subscribe('my-channel');
+    // channel.bind('my-event', function(data) {
+    //     alert(JSON.stringify(data));
+    // });
     </script>
     <script src="js/push_game.js"></script>
 
