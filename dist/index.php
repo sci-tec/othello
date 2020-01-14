@@ -21,5 +21,6 @@
         <input type="submit" value="登録" class="myButton">
     </form>
     <script src="js/app.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>
