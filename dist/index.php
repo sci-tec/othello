@@ -11,15 +11,17 @@
 </head>
 <body id="index">
     <p id="osero" align="center">Horoaki オセロ</p>
-    <form action="" method="post" align="center">
+    
         <table align="center">
             <tr>
                 <td>名前</td>
                 <td><input type="text" name="name" class="waku"></td>
             </tr>
         </table>
+
+        <div align="center">
         <input type="submit" value="登録" class="myButton">
-    </form>
+         </div>
     <script src="js/app.js"></script>
     <script src="js/index.js"></script>
 </body>
