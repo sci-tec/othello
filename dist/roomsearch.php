@@ -7,11 +7,18 @@
 <title>タイトル3</title>
 <script src="./js/app.js"></script>
 </head>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+</head>
+
 <body id="roomsearch_3">
 <main>
     <div class="container">
         <div class="content">
 
+        <h1>ようこそ<?php echo $_GET["player1"]; ?>サン</h1>
         
     <div class="row">
         <input type="text" name="room" placeholder="ルーム名" class="room">
@@ -27,13 +34,7 @@
     <div><a href="game.php?tableId=table002">start (tableid: table002)</a></div>
 </main>
 
-<div id="navi">
-    <a href="index.html">TOP</a>
-    <a href="match_2.html">MATCH</a>
-    <a href="roomsearch_3.html">ROOM SEARCH</a>
-    <a href="roommake_4.html">ROOM MAKE</a>
-    <a href="game.html">GAME</a>
-</div>
+<script src="js/app.js"></script>
 
 </body>
 </html>
