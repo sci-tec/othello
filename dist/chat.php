@@ -11,10 +11,17 @@
         <form method="post" action="chat.php">
        <div class="font"> 名前　　　　<input type="text" name="name"　size="25" placeholder="名前を入力"> </div>
        <div class="font"> メッセージ　<input type="text" name="message"　size="25" placeholder="メッセージ入力"></div>
+       
  
         <button class="send" type="submit">送信</button>
  
         <br>チャット履歴
+        <div class="chat">
+<div class="bubble me"> input type="text" </div>
+<div class="bubble you">Hi. I'm an expandeable chat box with box shadow. How are you? I expand horizontally and vertically, as you can see here.</div>
+<div class="bubble me">Awesome.</div>
+<div class="bubble you">helk</div>
+<div class="bubble you">Hi.</div>
         <section>
     </form>
 </body>
@@ -43,7 +50,7 @@
             function connectDB() {
                 $user = "root";
                 $pass = "root";
-                $dbh = new PDO('mysql:host=localhost:3307;dbname=othello;charset=utf8', $user, $pass);
+                $dbh = new PDO('mysql:host=localhost:8889;dbname=othello;charset=utf8', $user, $pass);
 
                 return $dbh;
             }
