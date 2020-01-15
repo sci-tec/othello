@@ -18,7 +18,7 @@
     <div class="container">
         <div class="content">
 
-        <h1>player: <?php echo $_GET["player"]; ?></h1>
+        <h1><font color="white">player: <?php echo $_GET["player"]; ?></font></h1>
 
         
     <div class="row">
@@ -27,7 +27,7 @@
     </div>
     <div class="row">
         <div class="room2">ルーム名</div>
-        <a href="#" class="myButton5">入る</a>
+        <button href="#" class="myButton5">入る</button>
     </div>
     </div>
     </div>
@@ -36,6 +36,7 @@
 </main>
 
 <script src="js/app.js"></script>
-
+<script src="js/index.js"></script>
+<script src="js/roomsearch.js"></script>
 </body>
 </html>
