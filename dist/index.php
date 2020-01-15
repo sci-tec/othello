@@ -10,11 +10,11 @@
   crossorigin="anonymous"></script>
 </head>
 <body id="index">
-    <p id="osero" align="center">Horoaki オセロ</p>
+    <p id="osero" align="center"><font color ="white">Horoaki オセロ</font></p>
     
         <table align="center">
             <tr>
-                <td>名前</td>
+                <td><font color ="white">名前</font></td>
                 <td><input type="text" name="name" class="waku"></td>
             </tr>
         </table>
