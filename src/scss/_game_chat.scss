@@ -32,7 +32,8 @@
  .font{
   position: relative;
 	width: 40%;
-	margin: 20px 3%;
+  margin: 20px 3%;
+  color: white;
  }
 
  .font input[type='text'] {
@@ -57,27 +58,33 @@
 
 .bubble{
     background-color: #F2F2F2;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 0 6px #B2B2B2;
     display: inline-block;
-    padding: 10px 18px;
+    padding: 5px 10px;
     position: relative;
     vertical-align: top;
+    font-size:12px;
 }
 
 .bubble::before {
     background-color: #F2F2F2;
     content: "\00a0";
     display: block;
-    height: 16px;
+    height: 6px;
     position: absolute;
-    top: 11px;
-    transform:             rotate( 29deg ) skew( -35deg );
-        -moz-transform:    rotate( 29deg ) skew( -35deg );
-        -ms-transform:     rotate( 29deg ) skew( -35deg );
-        -o-transform:      rotate( 29deg ) skew( -35deg );
-        -webkit-transform: rotate( 29deg ) skew( -35deg );
-    width:  20px;
+    top: 21px;
+    bottom:7px;
+    transform:             rotate( 172.5deg ) skew( -980deg );
+        -moz-transform:    rotate( 172.5deg ) skew( -980deg );
+        -ms-transform:     rotate( 172.5deg ) skew( -980deg );
+        -o-transform:      rotate( 172.5deg ) skew( -980deg );
+        -webkit-transform: rotate( 172.5deg ) skew( -980deg );
+    width:  35px;
+    float: left;
+    margin-left: -13px;
+
+  
 }
 
 .me {
@@ -100,10 +107,10 @@
     right: -9px;    
 }
 
- 
-
-  
-  }
-
-
-
+.image{
+  float: left;
+  margin-left: 0px 0px 0px 30px;
+  width: 40px;
+  height: 38px;
+}
+}
