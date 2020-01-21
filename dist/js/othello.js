@@ -25,7 +25,7 @@ function initBoard() {
   channel.bind("plot", function(data) {
     console.log("plot");
     console.log(data);
-    // sendInfo(parseInt(data.x), parseInt(data.y), parseInt(data.color));
+    sendInfo(parseInt(data.x), parseInt(data.y), parseInt(data.color));
   });
   initInfo();
   // 初期盤面を作成
