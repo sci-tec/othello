@@ -42,7 +42,7 @@ $(function(){
         $(".roomContainer").append(`
         <div class="row">
             <div class="room2">${tables[i]}</div>
-            <a href="http://localhost/game.php?tableId=${tables[i]}&player=${player}" class="myButton5">入る</a>
+            <a href="./game.php?tableId=${tables[i]}&player=${player}" class="myButton5">入る</a>
         </div>`);
     }
 
