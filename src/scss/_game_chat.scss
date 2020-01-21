@@ -86,7 +86,6 @@
 
   
 }
-
 .me {
     float: left;   
     margin: 5px 45px 5px 20px;         
@@ -108,9 +107,13 @@
 }
 
 .image{
-  float: left;
   margin-left: 0px 0px 0px 30px;
   width: 40px;
   height: 38px;
+}
+
+.profile{
+  height: 100%;
+  display: flex;
 }
 }
