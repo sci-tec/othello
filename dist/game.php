@@ -25,8 +25,10 @@
     //     alert(JSON.stringify(data));
     // });
     </script>
-
     <div class="board"></div>
+    <!-- <div class="result_board">
+        <p>あなたの勝ちです！</p>
+    </div> -->
     <div class="chat">
         <iframe id="inlineFrameExample" title="Inline Frame Example" width="100%" height="100%" src="chat.php">
         </iframe>
@@ -35,15 +37,15 @@
     <div class="info">
         <div class="player1">
             <div class="color black"></div>
-            <p><?php echo $_GET["player"]; ?></p>
-            <div class="pieces_num">×00</div>
+            <p>player1</p>
+            <div class="pieces_num">×2</div>
         </div>
         <div class="player2">
             <div class="color white"></div>
             <p>player2</p>
-            <div class="pieces_num">×00</div>
+            <div class="pieces_num">×2</div>
         </div>
-        <div class="time_limit">残り30秒</div>
+        <div class="time_limit"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
