@@ -12,6 +12,9 @@ var getUrlVars = function() {
 };
 console.log(getUrlVars());
 const tableId = getUrlVars().tableId;
+const name = getUrlVars().player;
+const colorNum = parseInt(getUrlVars().color);
+
 Pusher.logToConsole = true;
 var pusher = new Pusher("ac2b1faa8b9a8094de41", {
   cluster: "ap3",
