@@ -42,9 +42,9 @@ $(function(){
         $(".roomContainer").append(`
         <div class="row">
             <div class="room2">${tables[i]}</div>
-            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${0}" class="myButton5">black</a>
-            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${1}" class="myButton5">white</a>
-            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${-1}" class="myButton5">watching</a>
+            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${0}" class="myButton5 black">black</a>
+            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${1}" class="myButton5 white">white</a>
+            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${-1}" class="myButton5 watching">watching</a>
         </div>`);
     
     }
