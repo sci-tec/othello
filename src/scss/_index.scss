@@ -1,0 +1,112 @@
+
+#index {
+    background-color: #cccccc;
+    background: url('../img/a.jpeg');
+    .test {
+      box-shadow: 3px 4px 0px 0px #899599;
+    }
+    .qrcode img{
+      width: 110px;
+      height: 110px;
+      margin-top: 20px;
+    }
+
+    .myButton {
+      box-shadow: 3px 4px 0px 0px #899599;
+      background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+      background-color: #ededed;
+      border-radius: 15px;
+      border: 1px solid #d6bcd6;
+      display: inline-block;
+      cursor: pointer;
+      color: #3a8a9e;
+      /* font-family:Arial; */
+      font-size: 28px;
+      padding: 3px 8px;
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #e1e2ed;
+    }
+    .myButton:hover {
+      background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+      background-color: #bab1ba;
+    }
+    .myButton:active {
+      position: relative;
+      top: 1px;
+    }
+    // position:relative;
+    
+    p {
+      margin-top: 100px;
+      font-size: 100px;
+    }
+    .waku {
+      font-size: 25px;
+      margin: 20px;
+      border: solid 2px;
+    }
+    .haba {
+      margin: 75px;
+    }
+    h1 {
+      font-size: 20px;
+    }
+    #chatto {
+      float: right;
+      width: 200px;
+      height: auto;
+      .chattoran {
+        overflow: auto;
+        border: solid 2px;
+        width: 200px;
+        height: 400px;
+        box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2) inset;
+      }
+      .chattosousin {
+        border: solid 2px;
+        width: 200px;
+        height: 25px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 15px;
+      }
+      .message {
+        margin: 0px;
+        padding: 0 14px;
+        font-size: 15px;
+        word-wrap: break-word;
+        white-space: normal;
+        .message_box {
+          margin-top: 20px;
+          max-width: 180px;
+          font-size: 15px;
+        }
+      }
+      .left {
+        float: left;
+        line-height: 1.3em;
+        .message_box {
+          color: #333;
+          background: #fff;
+          border: 2px solid #13178e;
+          border-radius: 30px 30px 30px 0px;
+          margin-right: 50px;
+        }
+      }
+      .right {
+        float: right;
+        line-height: 1.3em;
+        .message_box {
+          color: #fff;
+          background: #13178e;
+          border: 2px solid #13178e;
+          border-radius: 30px 30px 0px 30px;
+          margin-left: 50px;
+        }
+      }
+      .clear {
+        clear: both;
+      }
+    }
+  }
+  

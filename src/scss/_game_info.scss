@@ -1,66 +1,71 @@
 #new_game {
   .info {
     border: 2px solid #797979;
-    .player_first {
-      position: absolute;
-      left: 5%;
-      width: 60%;
-      height: 20px;
-      .color {
-        margin: 5px;
-        width: 28px;
-        height: 28px;
+    .player1 {
+      margin: 10px;
+      display: flex;
+      position: relative;
+      .black {
+        box-sizing: border-box;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         background: #000;
         border: 1px solid #000;
       }
-      .player_name {
-        height: 50%;
-        width: 70%;
+      p {
+        margin: 0;
         position: absolute;
-        top: 0;
-        left: 12%;
-        
+        top: -13%;
+        left: 20%;
+        font-size: 40px;
+        color: white;
+        text-transform: uppercase;
       }
-      .time_limit {
-        margin-left: 5px;
+      .pieces_num {
         position: absolute;
+        top: -13%;
+        left: 70%;
+        font-size: 40px;
+        color: brown;
       }
     }
-    .player_second {
-      position: absolute;
-      left: 5%;
-      width: 60%;
-      height: 20%;
-      top:50%;
-      .color {
-        margin: 5px;
-        width: 28px;
-        height: 28px;
+    .player2 {
+      margin: 10px;
+      display: flex;
+      position: relative;
+      .white {
+        box-sizing: border-box;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         background: rgb(211, 211, 211);
         border: 1px solid rgb(211, 211, 211);
       }
-      .player_name {
-        height: 50%;
-        width: 70%;
+      p {
+        margin: 0;
         position: absolute;
-        top: 0;
-        left: 12%;
-      
+        top: -13%;
+        left: 20%;
+        font-size: 40px;
+        color: white;
+        text-transform: uppercase;
       }
-      .time_limit {
-        margin-left: 5px;
+      .pieces_num {
         position: absolute;
+        top: -13%;
+        left: 70%;
+        font-size: 40px;
+        color: brown;
       }
     }
-    .vs {
+    .time_limit {
       position: absolute;
-      top: 20%;
-      left: 25%;
+      top: 72%;
+      left: 50%;
       transform: translate(-50%);
+      font-size: 30px;
+      color: brown;
     }
-    
-    
   }
 }
