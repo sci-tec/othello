@@ -35,7 +35,7 @@
     <div class="info">
         <div class="player1">
             <div class="color black"></div>
-            <p>player1</p>
+            <p><?php echo $_GET["player"]; ?></p>
             <div class="pieces_num">×00</div>
         </div>
         <div class="player2">
