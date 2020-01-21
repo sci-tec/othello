@@ -81,5 +81,5 @@ MAMPを起動して、Webサーバのルートディレクトリをdistディレ
 4. ブラウザで localhost/client.php を開く(MAMP設定によりポート番号が違う可能性があります)
 5. ブラウザで localhost/sernder.php を開くと、4.のページに通知が来る事が確認できます
 
-以上。
+以上
 

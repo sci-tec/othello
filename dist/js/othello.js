@@ -1,24 +1,27 @@
 /**/
 
-var row, yAxis, xAxis, player, myColor, opponentColor, pieces, hint;
+var row, yAxis, xAxis, player, myColor, opponentColor, pieces, hint, limit;
 row = [];
 yAxis = 8;
 xAxis = 8;
 player = 0; // 0:先攻(黒), 1:後攻(白)
 myColor = 0;
 opponentColor = 1;
-
+limit = 30;
 $(function() {
   initBoard();
   checkHint();
   boardCheck();
+  countdown();
   putPieces();
 });
 
 function initBoard() {
-  var row, grid;
-  var channel = pusher.subscribe("table001");
-  console.log(pusher);
+  var row, grid, channel;
+  // tableId = location.href.split("=")[1];
+  console.log(tableId);
+  channel = pusher.subscribe(tableId);
+  console.log(pusher, channel);
   channel.bind("plot", function(data) {
     console.log("plot");
     console.log(data);
@@ -125,6 +128,7 @@ function putPieces() {
     var y = Array.from(this.classList[1])[4];
     var x = Array.from(this.classList[1])[1];
     var color = parseInt(Array.from(hint)[16]);
+    sendInfo(parseInt(x), parseInt(y), color);
     let url = `/sender.php?tableId=${tableId}&type=plot&x=${x}&y=${y}&color=${color}`;
     console.log(url);
     $.get(url, function(data, status) {
@@ -152,6 +156,8 @@ function sendInfo(x, y, player) {
     pushDate(el.classList[1], row[y][x].contents);
     // プレイヤーを変える
     changePlayer();
+    stop();
+    countdown();
 
     // ヒントの表示をリセット
     resetHint();
@@ -239,6 +245,8 @@ function boardCheck() {
       if (row[y][x].contents === 1) white++;
     }
   }
+  $(".player1")[0].children[2].innerHTML = "×" + black;
+  $(".player2")[0].children[2].innerHTML = "×" + white;
   if ((!hint0 && player === 0) || (!hint1 && player === 1)) {
     changePlayer();
     checkHint();
@@ -273,20 +281,47 @@ function decideWinner() {
     }
   }
   if (black > white) {
+    stop();
+    $(".time_limit")[0].innerHTML = `残り ---秒`;
     console.log("winner Black!!");
     console.log(`black:${black} white:${white}`);
   } else if (black < white) {
+    stop();
+    $(".time_limit")[0].innerHTML = `残り ---秒`;
     console.log("winner White!!");
     console.log(`black:${black} white:${white}`);
   } else {
+    stop();
+    $(".time_limit")[0].innerHTML = `残り ---秒`;
     console.log("This game is a draw...");
     console.log(`black:${black} white:${white}`);
   }
 }
 
+function countdown() {
+  $(".time_limit")[0].innerHTML = `残り ${limit}秒`;
+  var time = limit;
+  timer = setInterval(() => {
+    time--;
+    $(".time_limit")[0].innerHTML = `残り ${time}秒`;
+    if (time < 1) {
+      stop();
+      !player ? alert("黒がパスをしました。") : alert("白がパスをしました。");
+      changePlayer();
+      resetHint();
+      checkHint();
+      boardCheck();
+      countdown();
+    }
+  }, 1000);
+}
+
+function stop() {
+  clearInterval(timer);
+}
 function pushDate(position, color) {
   let url = `/sender.php?position=${position}&color=${color}&tableId=${tableId}`;
-  console.log(url);
+  // console.log(url);
   $.ajax({
     url: url,
     type: "GET",
@@ -301,6 +336,6 @@ function pushDate(position, color) {
     .fail(function(e) {
       // 通信失敗時の処理を記述
       console.log("push fail");
-      console.log(e);
+      // console.log(e);
     });
 }

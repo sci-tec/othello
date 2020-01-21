@@ -39,9 +39,23 @@
     width: 30%;
     height: 29%;
     background-image: url("../img/e.jpg");
-
+  }
+  .result_board {
+    position: absolute;
+    width: 480px;
+    height: 240px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    top: 38%;
+    left: 10%;
+    p {
+      margin: 16% 0 0 0;
+      color: red;
+      font-size: 52px;
+    }
   }
 }
+
 @media screen and (max-height: 550px) {
   #new_game {
     .board {
@@ -118,12 +132,11 @@
 
 @media screen and (max-width: 400px) {
   #new_game {
-
-    .info .player2 p{
+    .info .player2 p {
       font-size: 30px;
       margin-top: 12px;
     }
-    .info .player1 p{
+    .info .player1 p {
       font-size: 30px;
       margin-top: 12px;
     }

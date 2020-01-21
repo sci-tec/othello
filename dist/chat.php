@@ -10,15 +10,15 @@
     <div class="font">チャット</div>
         <form method="post" action="chat.php">
        <div class="font"> 名前　　　　<input type="text" name="name"　size="25" placeholder="名前を入力"> </div>
-       <div class="font"> メッセージ　<input type="text" name=""　size="25" placeholder="メッセージ入力"></div>
+       <div class="font"> メッセージ　<input type="text" name="message"　size="25" placeholder="メッセージ入力"></div>
        
  
-        <button class="send" type="submit">送信</button>
+        <button class="send" name="send" type="submit">送信</button>
  
         <p class="font">チャット履歴</p>
-        <div class="chat">
+    
 
-        <section>
+    
     </form>
 </body>
 
@@ -27,7 +27,7 @@
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
                 // 投稿内容を表示
                 $who = rand(1, 100) > 50 ? "me" : "you"; 
-                echo '<img src="../img/no_image.png" alt="icon" class = image />';
+                echo '<img src="../img/no_image.png" alt="icon" class = image >';
                 echo "<div class='bubble '".$who."'>".$message['name'],"：　",$message['message'],"：",$message['time']."</div>";
             }
  
@@ -47,7 +47,6 @@
                 $user = "root";
                 $pass = "root";
                 $dbh = new PDO('mysql:host=localhost:8889;dbname=othello;charset=utf8', $user, $pass);
-
                 return $dbh;
             }
  
