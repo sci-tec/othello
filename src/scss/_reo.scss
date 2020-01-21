@@ -33,7 +33,7 @@
     border: 1px solid #DCDCDC;
     cursor: pointer;
     color: #666666;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     padding: 6px 24px;
     text-decoration: none;
@@ -58,38 +58,47 @@
     margin-bottom: 10px;
   }
 
+  .myButton6 {
+    box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+    // background:linear-gradient(to bottom, #000 5%, #000 100%);
+    background-color:#000;
+    border-radius:6px;
+    border:1px solid #d83526;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:9px 18px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #b23e35;
+    margin-left: 10px;
+  }
+  .myButton6:hover {
+    background:linear-gradient(to bottom, #e4685d 5%, #fc8d83 100%);
+    background-color:#e4685d;
+  }
+  .myButton6:active {
+    position:relative;
+    top:1px;
+  }
   
-  .myButton5 {
-    box-shadow: inset 0px 1px 0px 0px #F7C5C0;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #FC8D83), to(#E4685D));
-    background: linear-gradient(to bottom, #FC8D83 5%, #E4685D 100%);
-    background-color: #fc8d83;
-    border-radius: 6px;
-    border: 1px solid #D83526;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 6px 24px;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #B23E35;
-    margin-left: 15px;
-  }
 
-  .black {
-    color: black;
-  }
+   .black {
+    background:linear-gradient(to bottom, #000 5%, #000 100%);
+     color:white;
+   }
+  .white {
+    background:linear-gradient(to bottom, white 5%, white 100%);
+     color:black;
+   }
+   .watching{
+    background:linear-gradient(to bottom, #A52A2A 5%, #A52A2A  100%);
+    color:#BDB76B
+   }
 
-  .myButton5:hover {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #E4685D), to(#FC8D83));
-    background: linear-gradient(to bottom, #E4685D 5%, #FC8D83 100%);
-    background-color: #e4685d;
-  }
-
-  .myButton5:active {
-    top: 1px;
-  }
+  
 
   .container {
     display: -webkit-box;
