@@ -10,15 +10,15 @@
     <div class="font">チャット</div>
         <form method="post" action="chat.php">
        <div class="font"> 名前　　　　<input type="text" name="name"　size="25" placeholder="名前を入力"> </div>
-       <div class="font"> メッセージ　<input type="text" name=""　size="25" placeholder="メッセージ入力"></div>
+       <div class="font"> メッセージ　<input type="text" name="message"　size="25" placeholder="メッセージ入力"></div>
        
  
-        <button class="send" type="submit">送信</button>
+        <button class="send" name="send" type="submit">送信</button>
  
         <p class="font">チャット履歴</p>
-        <div class="chat">
+    
 
-        <section>
+    
     </form>
 </body>
 
