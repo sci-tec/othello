@@ -131,7 +131,6 @@ function putPieces() {
     sendInfo(parseInt(x), parseInt(y), color);
     let url = `/sender.php?tableId=${tableId}&type=plot&x=${x}&y=${y}&color=${color}`;
     console.log(url);
-    // receive();
     $.get(url, function(data, status) {
       console.log(data);
       console.log(status);
@@ -339,14 +338,4 @@ function pushDate(position, color) {
       console.log("push fail");
       // console.log(e);
     });
-}
-
-function receive() {
-  var channel = pusher.subscribe("table001");
-  console.log(pusher);
-  channel.bind("plot", function(data) {
-    console.log("plot");
-    console.log(data);
-    sendInfo(parseInt(data.x), parseInt(data.y), parseInt(data.color));
-  });
 }
