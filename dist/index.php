@@ -22,7 +22,7 @@
         <div align="center">
         <input type="submit" value="登録" class="myButton">
          </div>
-         <div clss="qrcode">
+         <div class="qrcode" align="center">
          <img src ="./img/qrcode.png">
          </div>
     <script src="js/app.js"></script>
