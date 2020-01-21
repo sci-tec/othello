@@ -42,9 +42,13 @@ $(function(){
         $(".roomContainer").append(`
         <div class="row">
             <div class="room2">${tables[i]}</div>
-            <a href="./game.php?tableId=${tables[i]}&player=${player}" class="myButton5">入る</a>
+            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${0}" class="myButton5">kuro</a>
+            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${1}" class="myButton5">siro</a>
+            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${-1}" class="myButton5">kannsen</a>
         </div>`);
+    
     }
+
 
 
     searchWord = function(){
