@@ -17,6 +17,13 @@ $(function() {
 
 function initBoard() {
   var row, grid;
+  var channel = pusher.subscribe("table001");
+  console.log(pusher);
+  channel.bind("plot", function(data) {
+    console.log("plot");
+    console.log(data);
+    sendInfo(parseInt(data.x), parseInt(data.y), parseInt(data.color));
+  });
   initInfo();
   // 初期盤面を作成
   for (var y = 0; y < yAxis; y++) {
@@ -115,37 +122,43 @@ function searchHint(direction) {
 
 function putPieces() {
   $(".grid").click(function() {
-    for (var y = 0; y < yAxis; y++) {
-      for (var x = 0; x < xAxis; x++) {
-        if (
-          this.classList[1] === row[y][x].coordinates &&
-          row[y][x].contents === "" &&
-          this.innerHTML === hint
-        ) {
-          // 駒の色を変更
-          changePieces(search(x, y, [-1, 0])); // [y,x]
-          changePieces(search(x, y, [1, 0]));
-          changePieces(search(x, y, [0, -1]));
-          changePieces(search(x, y, [0, 1]));
-          changePieces(search(x, y, [-1, -1]));
-          changePieces(search(x, y, [-1, 1]));
-          changePieces(search(x, y, [1, -1]));
-          changePieces(search(x, y, [1, 1]));
-          this.innerHTML = `<div class="pieces${player}"></div>`;
-          row[y][x].contents = player;
-
-          // プレイヤーを変える
-          changePlayer();
-
-          // ヒントの表示をリセット
-          resetHint();
-          checkHint();
-          // ボード内を監視
-          boardCheck();
-        }
-      }
-    }
+    var y = Array.from(this.classList[1])[4];
+    var x = Array.from(this.classList[1])[1];
+    var color = parseInt(Array.from(hint)[16]);
+    let url = `/sender.php?tableId=${tableId}&type=plot&x=${x}&y=${y}&color=${color}`;
+    console.log(url);
+    $.get(url, function(data, status) {
+      console.log(data);
+      console.log(status);
+      if (status != "success") console.log("送信エラー");
+    });
   });
+}
+
+function sendInfo(x, y, player) {
+  var el = $(`.x${x}-y${y}`)[0];
+  if (row[y][x].contents === "" && el.innerHTML === hint) {
+    // 駒の色を変更
+    changePieces(search(x, y, [-1, 0])); // [y,x]
+    changePieces(search(x, y, [1, 0]));
+    changePieces(search(x, y, [0, -1]));
+    changePieces(search(x, y, [0, 1]));
+    changePieces(search(x, y, [-1, -1]));
+    changePieces(search(x, y, [-1, 1]));
+    changePieces(search(x, y, [1, -1]));
+    changePieces(search(x, y, [1, 1]));
+    el.innerHTML = `<div class="pieces${player}"></div>`;
+    row[y][x].contents = player;
+    pushDate(el.classList[1], row[y][x].contents);
+    // プレイヤーを変える
+    changePlayer();
+
+    // ヒントの表示をリセット
+    resetHint();
+    checkHint();
+    // ボード内を監視
+    boardCheck();
+  }
 }
 
 function search(x, y, direction) {
@@ -269,4 +282,25 @@ function decideWinner() {
     console.log("This game is a draw...");
     console.log(`black:${black} white:${white}`);
   }
+}
+
+function pushDate(position, color) {
+  let url = `/sender.php?position=${position}&color=${color}&tableId=${tableId}`;
+  console.log(url);
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: "json",
+    // フォーム要素の内容をハッシュ形式に変換
+    timeout: 5000
+  })
+    .done(function(data) {
+      // 通信成功時の処理を記述
+      console.log("push done");
+    })
+    .fail(function(e) {
+      // 通信失敗時の処理を記述
+      console.log("push fail");
+      console.log(e);
+    });
 }

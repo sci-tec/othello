@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  
 <?php
   require __DIR__ . '/vendor/autoload.php';
-
   $options = array(
     'cluster' => 'ap3',
     'useTLS' => true
@@ -21,20 +10,10 @@
     '906718',
     $options
   );
-
-  $data['message'] = 'hello world';
-  // $pusher->trigger('my-channel', 'my-event', $data);
-
-  $type = $_GET["t"];
-
-  $params["x"] = $_GET["x"];
-  $params["y"] = $_GET["y"];
-  $params["m"] = $_GET["m"];
-
-  function sendMessage($type, $params) {
-        $pusher->trigger('table001', $type, $data);
-  }
+  $tableId = $_GET["tableId"];
+  $type = $_GET["type"];
+  $pusher->trigger($tableId, $type, $_GET);
+/*
+/sender.php?tableId=t01&type=plot&x=5&y=3&color=0
+*/
 ?>
-
-</body>
-</html>

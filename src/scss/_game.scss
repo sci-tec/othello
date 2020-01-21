@@ -6,7 +6,7 @@
 @import "game_info";
 
 #new_game {
-  background: url('../img/a.jpeg');
+  background: url("../img/a.jpeg");
   position: relative;
   margin: 0;
   padding: 0;
@@ -14,7 +14,7 @@
 
   .board {
     position: absolute;
-    top: 1%;
+    top: 17%;
     left: 34.5%;
     transform: translate(-50%);
     width: 480px;
@@ -27,6 +27,7 @@
     width: 30%;
     height: 66%;
     top: 30%;
+    background-image: url("../img/e.jpg");
   }
   .info {
     margin: 10px;
@@ -34,10 +35,11 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    top:0;
+    top: 0;
     width: 30%;
     height: 29%;
-    
+    background-image: url("../img/e.jpg");
+
   }
 }
 @media screen and (max-height: 550px) {
@@ -80,6 +82,7 @@
       left: 50%;
       width: 400px;
       height: 400px;
+      margin-top: 90px;
     }
     .chat {
       margin-left: 0;
@@ -88,6 +91,7 @@
       transform: translate(-50%);
       width: 98vw;
       height: 18%;
+      margin-top: 435px;
     }
     .info {
       margin-left: 0;
@@ -95,7 +99,7 @@
       left: 50%;
       transform: translate(-50%);
       width: 98vw;
-      height: 10%;
+      height: 27%;
     }
   }
 }
@@ -107,6 +111,21 @@
       transform: translate(-50%, 50%);
       width: 320px;
       height: 320px;
+      margin-top: 87px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #new_game {
+
+    .info .player2 p{
+      font-size: 30px;
+      margin-top: 12px;
+    }
+    .info .player1 p{
+      font-size: 30px;
+      margin-top: 12px;
     }
   }
 }
