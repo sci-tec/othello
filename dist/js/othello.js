@@ -5,6 +5,7 @@ var row, yAxis, xAxis, player, myColor, opponentColor, pieces, hint, limit;
 row = [];
 yAxis = 8;
 xAxis = 8;
+
 player = 0; // 0:先攻(黒), 1:後攻(白)
 myColor = 0;
 opponentColor = 1;
@@ -141,10 +142,11 @@ function putPieces() {
 
 function sendInfo(x, y, player) {
   var el = $(`.x${x}-y${y}`)[0];
+  console.log(x, y, player);
   if (
     row[y][x].contents === "" &&
-    el.innerHTML === hint &&
-    player === colorNum
+    el.innerHTML === hint
+    // player === colorNum
   ) {
     // 駒の色を変更
     changePieces(search(x, y, [-1, 0])); // [y,x]
