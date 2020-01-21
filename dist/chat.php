@@ -27,7 +27,7 @@
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
                 // 投稿内容を表示
                 $who = rand(1, 100) > 50 ? "me" : "you"; 
-                echo '<img src="../img/no_image.png" alt="icon" class = image />';
+                echo '<img src="../img/no_image.png" alt="icon" class = image >';
                 echo "<div class='bubble '".$who."'>".$message['name'],"：　",$message['message'],"：",$message['time']."</div>";
             }
  
