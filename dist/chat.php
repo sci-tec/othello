@@ -46,12 +46,7 @@
             function connectDB() {
                 $user = "root";
                 $pass = "root";
-<<<<<<< HEAD
-                $dbh = new PDO('mysql:host=localhost:18888;dbname=othello;charset=utf8', $user, $pass);
-=======
                 $dbh = new PDO('mysql:host=localhost:8889;dbname=othello;charset=utf8', $user, $pass);
->>>>>>> 30398b21ad54889265fa71820ce01edcdfeee572
-
                 return $dbh;
             }
  
