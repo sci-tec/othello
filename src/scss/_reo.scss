@@ -1,6 +1,8 @@
 #roomsearch_3{
 
   background: url('../img/a.jpeg');
+
+  h1{color:white}
   
   .room {
     float: left;
@@ -56,6 +58,7 @@
     margin-bottom: 10px;
   }
 
+  
   .myButton5 {
     box-shadow: inset 0px 1px 0px 0px #F7C5C0;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #FC8D83), to(#E4685D));
@@ -72,6 +75,10 @@
     text-decoration: none;
     text-shadow: 0px 1px 0px #B23E35;
     margin-left: 15px;
+  }
+
+  .black {
+    color: black;
   }
 
   .myButton5:hover {
