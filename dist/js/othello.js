@@ -1,4 +1,5 @@
-/**/
+/*
+ */
 
 var row, yAxis, xAxis, player, myColor, opponentColor, pieces, hint, limit;
 row = [];
@@ -18,8 +19,7 @@ $(function() {
 
 function initBoard() {
   var row, grid, channel;
-  // tableId = location.href.split("=")[1];
-  console.log(tableId);
+  console.log(tableId, colorNum);
   channel = pusher.subscribe(tableId);
   console.log(pusher, channel);
   channel.bind("plot", function(data) {
@@ -129,7 +129,7 @@ function putPieces() {
     var x = Array.from(this.classList[1])[1];
     var color = parseInt(Array.from(hint)[16]);
     sendInfo(parseInt(x), parseInt(y), color);
-    let url = `/sender.php?tableId=${tableId}&type=plot&x=${x}&y=${y}&color=${color}`;
+    let url = `./sender.php?tableId=${tableId}&type=plot&x=${x}&y=${y}&color=${color}`;
     console.log(url);
     $.get(url, function(data, status) {
       console.log(data);
@@ -141,7 +141,11 @@ function putPieces() {
 
 function sendInfo(x, y, player) {
   var el = $(`.x${x}-y${y}`)[0];
-  if (row[y][x].contents === "" && el.innerHTML === hint) {
+  if (
+    row[y][x].contents === "" &&
+    el.innerHTML === hint &&
+    player === colorNum
+  ) {
     // 駒の色を変更
     changePieces(search(x, y, [-1, 0])); // [y,x]
     changePieces(search(x, y, [1, 0]));
@@ -306,7 +310,7 @@ function countdown() {
     $(".time_limit")[0].innerHTML = `残り ${time}秒`;
     if (time < 1) {
       stop();
-      !player ? alert("黒がパスをしました。") : alert("白がパスをしました。");
+      // !player ? alert("黒がパスをしました。") : alert("白がパスをしました。");
       changePlayer();
       resetHint();
       checkHint();
@@ -320,7 +324,7 @@ function stop() {
   clearInterval(timer);
 }
 function pushDate(position, color) {
-  let url = `/sender.php?position=${position}&color=${color}&tableId=${tableId}`;
+  let url = `./sender.php?position=${position}&color=${color}&tableId=${tableId}`;
   // console.log(url);
   $.ajax({
     url: url,
