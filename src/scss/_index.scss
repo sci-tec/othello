@@ -109,4 +109,40 @@
       }
     }
   }
+
+  @media screen and (min-width: 723px) {
+    #index {
+      position: relative;
+    }
+  }
+
+  @media screen and (max-width:722px) {
+    #index {
+      position: relative;
+
+      #title {
+        font-size: 70px;
+      }
+    }
+  }
+
+  @media screen and (max-width:510px) {
+    #index {
+      position: relative;
+
+      #title {
+        font-size: 65px;
+      }
+    }
+  }
+
+  @media screen and (max-width:479px) {
+    #index {
+      position: relative;
+
+      #title {
+        font-size: 45px;
+      }
+    }
+  }
   
