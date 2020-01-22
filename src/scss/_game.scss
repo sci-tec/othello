@@ -40,6 +40,25 @@
     height: 29%;
     background-image: url("../img/e.jpg");
   }
+  .result{
+    .win{
+      display: none;
+      position: absolute;
+      font-size: 56px;
+      padding-top: 315px;
+      padding-left: 205px;
+      color: orange;
+    }
+    .lose{
+      display:none;
+      position: absolute;
+      font-size: 56px;
+      padding-top: 315px;
+      padding-left: 205px;
+      color: orange;
+    }
+  }
+
   .result_board {
     position: absolute;
     width: 480px;
@@ -115,6 +134,22 @@
       width: 98vw;
       height: 27%;
     }
+    .result{
+      .win{
+        position: absolute;
+        font-size: 30px;
+        padding-top: 366px;
+        padding-left: 31px;
+        color: orange;
+      }
+      .lose{
+        position: absolute;
+        font-size: 30px;
+        padding-top: 366px;
+        padding-left: 31px;
+        color: orange;
+      }
+    }
   }
 }
 @media screen and (max-width: 410px) {
@@ -140,5 +175,22 @@
       font-size: 30px;
       margin-top: 12px;
     }
+    .result{
+      .win{
+        position: absolute;
+        font-size: 22px;
+        padding-top: 346px;
+        padding-left: 40px;
+        color: orange;
+      }
+      .lose{
+        position: absolute;
+        font-size: 22px;
+        padding-top: 346px;
+        padding-left: 40px;
+        color: orange;
+      }
+    }
+
   }
 }
