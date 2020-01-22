@@ -110,13 +110,13 @@
     }
   }
 
-  @media screen and (min-width: 723px) {
+  @media screen and (min-width: 750px) {
     #index {
       position: relative;
     }
   }
 
-  @media screen and (max-width:722px) {
+  @media screen and (max-width:750px) {
     #index {
       position: relative;
 
@@ -126,12 +126,22 @@
     }
   }
 
-  @media screen and (max-width:510px) {
+  @media screen and (max-width:530px) {
     #index {
       position: relative;
 
       #title {
         font-size: 65px;
+      }
+    }
+  }
+
+  @media screen and (max-width:493px) {
+    #index {
+      position: relative;
+
+      #title {
+        font-size: 55px;
       }
     }
   }

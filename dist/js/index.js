@@ -4,11 +4,15 @@ $(function(){
         console.log(who);
         window.location.href = '/roomsearch.php?player='+who;
     });
-    
-        // console.log("test"); 
-        /* $(".myButton5").click(function(){
-             console.log("test2"); 
-             window.location.href = '/game.php?tableId=table001';
-         })*/
-    
+    $("body").keypress(function(e) {
+        if (e.which === 13) {
+            if($(".waku").val() === '') {
+                alert('名前を入力してください！');
+                $(".waku").focus();
+                return false;
+            } else{
+                $(".myButton").click();
+            } 
+        }
+    });
 });
