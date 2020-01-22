@@ -29,6 +29,14 @@
     <!-- <div class="result_board">
         <p>あなたの勝ちです！</p>
     </div> -->
+    <div class="result">
+        <div class="win">
+            <p1>YOURWINEヽ(ﾟ∀｡)ﾉｳｪィ</p1>
+        </div>
+        <div class="lose">
+            <p2>YOURLOSERΣ(ﾟдﾟlll)ｶﾞｰﾝ</p2>
+        </div>
+    </div>
     <div class="chat">
         <iframe id="inlineFrameExample" title="Inline Frame Example" width="100%" height="100%" src="chat.php">
         </iframe>
