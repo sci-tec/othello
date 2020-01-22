@@ -11,7 +11,7 @@
   crossorigin="anonymous"></script>
 </head>
 <body id="index">
-    <p id="osero" align="center"><font color ="white">Horoaki othello</font></p>
+    <p id="title" align="center"><font color ="white">Horoaki othello</font></p>
 
         <table align="center">
             <tr>
