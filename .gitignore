@@ -4,3 +4,4 @@ dist/css
 dist/vendor
 dist/composer.lock
 docker/db
+env.php
