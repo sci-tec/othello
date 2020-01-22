@@ -26,6 +26,7 @@
          <div class="qrcode" align="center">
          <img src ="./img/qrcode.png">
          </div>
+         <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/index.js"></script>
 </body>
