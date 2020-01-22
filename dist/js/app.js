@@ -6,8 +6,8 @@ $(function(){
         // '<a href="roomsearch_3.html">ROOM SEARCH</a>',
         // '<a href="roommake_4.html">ROOM MAKE</a>',
         '<a href="roomsearch.php">ROOM SEARCH</a>',
-        '<a href="game.php">GAME</a>',
-        '<a href="http://localhost:28889/db_structure.php?server=1&db=database" target="_blank">phpMyAdmin</a>'
+        '<a href="game.php">GAME</a>'
+        // '<a href="http://localhost:28889/db_structure.php?server=1&db=database" target="_blank">phpMyAdmin</a>'
     )
 });
 
