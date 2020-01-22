@@ -23,6 +23,7 @@
                 <input type="text" name="room" placeholder="ルーム名" class="room">
                 <a href="#" id = "make" class="search">make</a> 
             </div>
+            <div class='text'></div>
             <div class="row">
                 <input type="text" name="room" placeholder="ルーム名" class="room">
                 <a href="#" class="search">search</a> 

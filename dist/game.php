@@ -10,7 +10,7 @@
 </head>
 
 <body id="new_game">
-    <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+<script src="https://js.pusher.com/5.0/pusher.min.js"></script>
     <script>
     // // Enable pusher logging - don't include this in production
     // Pusher.logToConsole = true;
