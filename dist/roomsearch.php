@@ -21,6 +21,10 @@
             <h1>player: <?php echo $_GET["player"]; ?></h1>
             <div class="row">
                 <input type="text" name="room" placeholder="ルーム名" class="room">
+                <a href="#" id = "make" class="search">make</a> 
+            </div>
+            <div class="row">
+                <input type="text" name="room" placeholder="ルーム名" class="room">
                 <a href="#" class="search">search</a> 
             </div>
             <div class="roomContainer"></div>
