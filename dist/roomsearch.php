@@ -23,7 +23,7 @@
         
     <div class="row">
         <input type="text" name="room" placeholder="ルーム名" class="room">
-        <a href="#" class="search">検 索</a> 
+        <a href="#" class="search">search</a> 
     </div>
 
     <div class="roomContainer"></div>
@@ -42,9 +42,9 @@ $(function(){
         $(".roomContainer").append(`
         <div class="row">
             <div class="room2">${tables[i]}</div>
-            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${0}" class="myButton5 black">black</a>
-            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${1}" class="myButton5 white">white</a>
-            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${-1}" class="myButton5 watching">watching</a>
+            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${0}" class="myButton6 black">black</a>
+            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${1}" class="myButton6 white">white</a>
+            <a href="./game.php?tableId=${tables[i]}&player=${player}&color=${-1}" class="myButton6 watching">watching</a>
         </div>`);
     
     }
