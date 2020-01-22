@@ -11,6 +11,12 @@ $(function(){
     )
 });
 
+Pusher.logToConsole = true;
+var pusher = new Pusher("ac2b1faa8b9a8094de41", {
+  cluster: "ap3",
+  forceTLS: true
+});
+
 var getUrlVars = function() {
     var vars = {};
     var param = location.search.substring(1).split("&");
