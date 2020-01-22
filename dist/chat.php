@@ -17,18 +17,24 @@
  
         <p class="font">チャット履歴</p>
         <div class="chat">
-
         <section>
     </form>
 </body>
-
     <?php // DBからデータ(投稿内容)を取得 
     $stmt = select(); 
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
                 // 投稿内容を表示
-                $who = rand(1, 100) > 50 ? "me" : "you"; 
-                echo '<img src="../img/no_image.png" alt="icon" class = image />';
-                echo "<div class='bubble '".$who."'>".$message['name'],"：　",$message['message'],"：",$message['time']."</div>";
+                $who = rand(1, 100) > 50 ? "me" : "you";
+
+                echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$message['name']."：".$message['message'].":".$message['time']."</div></div>";
+
+                // echo "<div class= profile>";
+                // echo '<img src="../img/no_image.png" alt="icon" class="image">';
+                // echo '<div class="bubble">'.$message['name']."：".$message['message'].":".$message['time']."</div>";
+                // echo "</div>";
+                
+                // echo '<div class= profile><img src="../img/no_image.png" alt="icon" class = image /></div>'.
+                // "<div class='bubble '".$who."'>".$message['name'],"：　",$message['message'],"：",$message['time']."</div>";
             }
  
             // 投稿内容を登録
@@ -37,7 +43,7 @@
                 // 投稿した内容を表示
                 $stmt = select_new();
                 foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
-                    echo "<div class='bubble me'>".$message['name'],"：　",$message['message'],"：",$message['time']."</div>";
+                    echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$message['name']."：".$message['message'].":".$message['time']."</div></div>";
                     // echo $message['time'],"：　",$message['name'],"：",$message['message'];
                     echo nl2br("\n");
                 }

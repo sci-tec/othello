@@ -83,3 +83,35 @@ MAMPを起動して、Webサーバのルートディレクトリをdistディレ
 
 以上
 
+2020.01.22 追記
+
+## Docker環境構築及び起動方法
+
+Windows for MAMPのpusher動作不具合を受け、Docker+docker-composeによる運用を検討してみたいと思います。下記手順で環境を構築してください。
+参考: https://qiita.com/ksh-fthr/items/6b1242c010fac7395a45
+
+### Dockerインストール手順
+
+1. ここでDocker Hubのアカウントを作成します
+https://hub.docker.com/
+2. 1.のアカウントを使ってここのリンクからDocker for Windowsをダウンロード
+https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-for-windows-desktop-app
+3. インストール後、`docker version` でバージョン確認。(バージョンなどが表示されればOK)
+4. 更に、`docker run hello-world` で動作確認。下記にように表示されればOK
+> Hello from Docker!
+> This message shows that your installation appears to be working correctly.
+> ...
+
+### docker-composeインストール手順
+
+https://github.com/docker/compose/releases によると、上記Dockerインストールによりdocker-composeも入っていると思われる。(Mac & Windowsユーザのみ)よって省略します。
+
+### 起動方法
+**MAMPは使わないので、事前に終了しておいてください**
+
+1. `cd`コマンドでothelloプロジェクトルート(README.mdファイルがある場所)へ移動
+2. `git pull root master` で本家から最新版をpullする
+3. `docker-compose up --build` でサーバ起動
+4. 下記アドレスにアクセスして動作確認をしてください
+- webサーバ http://localhost:28888
+- pypMyAdmin http://localhost:28889

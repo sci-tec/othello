@@ -11,17 +11,17 @@
   crossorigin="anonymous"></script>
 </head>
 <body id="index">
-    <p id="title" align="center"><font color ="white">Horoaki オセロ</font></p>
-    
+    <p id="osero" align="center"><font color ="white">Horoaki othello</font></p>
+
         <table align="center">
             <tr>
-                <td><font color ="white">名前</font></td>
+                <td><font color ="white">name</font></td>
                 <td><input type="text" name="name" class="waku"></td>
             </tr>
         </table>
 
         <div align="center">
-        <input type="submit" value="登録" class="myButton">
+        <input type="submit" value="register" class="myButton">
          </div>
          <div class="qrcode" align="center">
          <img src ="./img/qrcode.png">
