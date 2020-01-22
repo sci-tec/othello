@@ -10,10 +10,14 @@
     '906718',
     $options
   );
-  $tableId = $_GET["tableId"];
-  $type = $_GET["type"];
-  $pusher->trigger($tableId, $type, $_GET);
-/*
-/sender.php?tableId=t01&type=plot&x=5&y=3&color=0
-*/
+
+  $newGET = [];
+  foreach ($_GET as $key => $value) {
+    $newGET[$key] = preg_replace('/[^0-9a-zA-Z]/', '', $value);
+  }
+
+  $tableId = $newGET["tableId"];
+  $type = $newGET["type"];
+
+  $pusher->trigger($tableId, $type, $newGET);
 ?>
