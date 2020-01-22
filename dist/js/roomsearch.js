@@ -15,7 +15,7 @@ var e=0;
      $(document).on("change", ".check", function () {
       var id = $(this).parent().data("id");
       var isChecked = $(this).filter(":checked").val()=="on";
-      setChecked(id,isChecked);
+      setChecked(id,isChecked); 
       });
 
 
