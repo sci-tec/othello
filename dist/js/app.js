@@ -25,7 +25,7 @@ var getUrlVars = function() {
       var key = "";
       if (keySearch != -1) key = param[i].slice(0, keySearch);
       var val = param[i].slice(param[i].indexOf("=", 0) + 1);
-      if (key != "") vars[key] = decodeURI(val);
+      if (key != "") vars[key] = clean(decodeURI(val));
     }
     return vars;
 };
@@ -46,3 +46,19 @@ function escape_html (string) {
     });
 }
 
+function clean(str) {
+    var retVal = "";
+    for(var i=0; i<str.length; i++) {
+        retVal += isHanEisu(str.substr(i,1)) ? str.substr(i,1) : "";
+    }
+    return retVal;
+}
+
+function isHanEisu(str){
+  str = (str==null)?"":str;
+  if(str.match(/^[A-Za-z0-9]*$/)){
+    return true;
+  }else{
+    return false;
+  }
+}
