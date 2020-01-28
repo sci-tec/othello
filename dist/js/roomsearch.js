@@ -2,25 +2,16 @@ $(function(){
   let tables = ["table001","table002","table003","table004","table005","table006","table007","table008","table009","table010"];
   let player = getUrlVars().player;
   $('#make').on('click',function(){//＋ボタンを押したとき
-    var s = $(".room").val();
+    var s = strDis($(".room").val())
+    console.log(s)
     if( s!=""){//テキストボックス内に文字の有無
-      // console.log($(".room").val())
-    console.log(s);
-      // strDis ($(".room").val());
-     tuika();
+     tuika(s);
      refresh();
     }else{
      alert("文字を入力してください。")
     }
     $(".room").val("");//テキストボックス内を初期化
   })
-
-function strDis (str){
-  const array = ['!','$'];
-  array.forEach(el => {if(str===el) console.log(el)});
-}
-
-
 
 function refresh() {
    console.log(tables);
@@ -35,12 +26,11 @@ function refresh() {
       </div>`;
     console.log(make);
     $(".roomContainer").prepend(make);
-    var str1 = tables.toString();
   }
 }
 
- function tuika(){
-   inputText = $(".room").val();
+ function tuika(s){
+   inputText = s;
    tables.push(inputText);
  }
 
