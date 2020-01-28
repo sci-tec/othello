@@ -12,6 +12,7 @@
   <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
   <script src="./js/app.js"></script>
   <script src="./js/roomsearch.js"></script>
+  <link rel="shortcut icon" href="./faviconstc.ico" />
 </head>
 
 <body id="roomsearch_3">

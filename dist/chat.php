@@ -8,13 +8,15 @@
 <body id="game_chat">            
     <!-- header 表示固定表示 -->
     <div class="header">
-        <div class="font">チャット</div>
+        <p class="chat-str">チャット</p>
         <form method="post" action="chat.php">
-            <div class="font"> 名前　　　　<input type="text" name="name"　size="15" placeholder="名前を入力"> </div>
-            <div class="font"> メッセージ　<input type="text" name="message"　size="15" placeholder="メッセージ入力"></div>
+            <div class="font">
+                <div class="left"> 名前　   　　　<input type="text" name="name"　size="15" placeholder="名前を入力"> </div>
+                <div class="right"> メッセージ    　<input type="text" name="message"　size="15" placeholder="メッセージ入力"></div>
+            </div>
             <button class="send" name="send" type="submit">送信</button>
         </form>
-        <p class="font">チャット履歴</p>
+        <!-- <p class="font">チャット履歴</p> -->
     </div>
 
     <!-- スクロール -->
@@ -43,7 +45,7 @@
                 // 投稿した内容を表示
                 $stmt = select_new();
                 foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
-                    echo "<div class='bubble me'>".$message['name'],"：　",$message['message'],"：",$message['time']."</div>";
+                    echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$message['name']."：".$message['message'].":".$message['time']."</div></div>";
                     // echo $message['time'],"：　",$message['name'],"：",$message['message'];
                     echo nl2br("\n");
                 }
