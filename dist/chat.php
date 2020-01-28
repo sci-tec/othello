@@ -45,7 +45,7 @@
                 // 投稿した内容を表示
                 $stmt = select_new();
                 foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
-                    echo "<div class='bubble me'>".$message['name'],"：　",$message['message'],"：",$message['time']."</div>";
+                    echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$message['name']."：".$message['message'].":".$message['time']."</div></div>";
                     // echo $message['time'],"：　",$message['name'],"：",$message['message'];
                     echo nl2br("\n");
                 }
