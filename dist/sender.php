@@ -4,7 +4,7 @@
     $newGET[$key] = preg_replace('/[^0-9a-zA-Z]/', '', $value);
   }
 
-  //*/
+  /*/
   sendByPHP($newGET); // mac
   /*/
   sendToNodeServer($newGET); // mac以外
