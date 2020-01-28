@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
 
     <title>othello</title>
+    <link rel="shortcut icon" href="./faviconstc.ico" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
