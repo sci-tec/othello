@@ -25,7 +25,7 @@ var getUrlVars = function() {
     var key = "";
     if (keySearch != -1) key = param[i].slice(0, keySearch);
     var val = param[i].slice(param[i].indexOf("=", 0) + 1);
-    if (key != "") vars[key] = clean(decodeURI(val));
+    if (key != "") vars[key] = strDis(decodeURI(val));
   }
   return vars;
 };
