@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
-<link rel="shortcut icon" href="./favicon-stc.ico" />
+<link rel="shortcut icon" href="./faviconstc.ico" />
 <title>初期設定</title>
 <link rel="stylesheet" href="css/style.css">
 <script
