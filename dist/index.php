@@ -1,3 +1,31 @@
+<?php
+    // sessionの開始。既に開始されていれば再開します。
+    session_start();
+    if(isset($_GET["logout"])) {
+        if($_GET["logout"]=="true") {
+            session_destroy();
+            session_start();
+        }
+    }
+
+    $username = isset($_POST["username"]) ? $_POST["username"] : "";
+    $password = isset($_POST["password"]) ? $_POST["password"] : "";
+    if(checkLogin($username, $password)) {
+        $_SESSION['username'] = $username;
+        echo $username;
+        echo $password;
+        header('Location: ./roomsearch.php');
+    }
+
+    function checkLogin($u, $p) {
+        //ここでdbアクセスをしてpwチェック
+        // 今は単純に以下の条件でログインできるものとする
+        // ユーザ名が空白ではなく
+        // パスワード"123"
+        return ($u != "" && $p == "123");
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -15,15 +43,15 @@
     <p id="title" align="center"><font color ="white">Horoaki othello</font></p>
 
 <div class="login">
-    <form method="post" action="./roomsearch.php">
+    <form method="post" action="./index.php">
     <table align="center">
         <tr>
             <td><font color ="white">name</font></td>
-            <td><input type="text" name="name" class="waku"></td>
+            <td><input type="text" name="username" placeholder="username" class="waku" value="<?php echo $username ?>"></td>
         </tr>
         <tr>
             <td><font color ="white">password</font></td>
-            <td><input type="text" name="name" class="waku"></td>
+            <td><input type="password" name="password" placeholder="password" class="waku" value=""></td>
         </tr>
     </table>
         <div align="center">
