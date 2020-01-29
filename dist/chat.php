@@ -16,6 +16,7 @@
             </div>
             <!-- <input class="send" name="send" type="submit" value="送信"> -->
             <input class="abc" type="submit" name="send" value="送信" >　
+            
         </form>
         <!-- <p class="font">チャット履歴</p> -->
     </div>
