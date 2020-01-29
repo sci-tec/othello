@@ -1,3 +1,33 @@
 #members{
-    
+
+    background-color: black;
+
+    h1{
+        font-size: 42px;
+        color:aqua;
+        text-align: center;
+    }
+
+    .back{
+        font-size: 20px;
+        background-color: gray;
+        width: 46px;
+    }
+    .member{
+
+        position: absolute;
+        left:50%;
+        transform: translate(-50%);
+
+        .rink{
+            font-size: 21px;
+            background-color: gold;
+        }
+
+        p{
+            font-size: 28px;
+            color: palevioletred;
+            margin: 8px;
+        }
+    }
 }
