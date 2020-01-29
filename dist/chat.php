@@ -11,8 +11,8 @@
         <!-- <p class="chat-str">チャット</p> -->
         <form method="post" action="chat.php">
             <div class="font">
-                <div class="left"> 名前　   　　　<input type="text" name="name"　size="15" placeholder="名前を入力"> </div>
-                <div class="right"> メッセージ    　<input type="text" name="message"　size="15" placeholder="メッセージ入力"></div>
+                <!-- <div class="left"> 名前　   　　　<input type="text" name="name"　size="15" placeholder="名前を入力"> </div> -->
+                <div class="right"> メッセージ    　<input type="text" name="message"　size="15" placeholder="メッセージ入力   Enterを押すと送信"></div>
             </div>
             <!-- <input class="send" name="send" type="submit" value="送信"> -->
             <input class="abc" type="submit" name="send" value="送信" >
@@ -30,7 +30,6 @@
                 $who = rand(1, 100) > 50 ? "me" : "you";
 
                 echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$message['name']."：".$message['message'].":".$message['time']."</div></div>";
-
                 // echo "<div class= profile>";
                 // echo '<img src="../img/no_image.png" alt="icon" class="image">';
                 // echo '<div class="bubble">'.$message['name']."：".$message['message'].":".$message['time']."</div>";
