@@ -15,7 +15,8 @@
                 <div class="right"> メッセージ    　<input type="text" name="message"　size="15" placeholder="メッセージ入力   Enterを押すと送信"></div>
             </div>
             <!-- <input class="send" name="send" type="submit" value="送信"> -->
-            <input class="abc" type="submit" name="send" value="送信" >
+            <input class="abc" type="submit" name="send" value="送信" >　
+            
         </form>
         <!-- <p class="font">チャット履歴</p> -->
     </div>
