@@ -115,3 +115,31 @@ https://github.com/docker/compose/releases によると、上記Dockerインス�
 4. 下記アドレスにアクセスして動作確認をしてください
 - webサーバ http://localhost:28888
 - pypMyAdmin http://localhost:28889
+
+
+2020.01.28 追記
+
+## Mac以外の端末でlocalhostサーバを立ち上げる場合
+Mac以外の端末でサーバを立ち上げたとき、Pusherの送信がうまくいかないため、Node.jsサーバを立ち上げて代用する
+
+1. `cd othello` でothelloプロジェクトルートに移動
+2. `git pull root master` で最新版を取り込む
+3. `npm install` でpusherをインストール
+4. VS Codeでターミナルウィンドウを新規に開く
+5. `node node-server/server.js` でサーバ起動
+
+エラー表示にならず起動後は無反応であった場合、正常に起動していますので、gulpと同様に開いたターミナルはそのままにしておきます。
+
+## データベース接続情報の外部ファイル化
+
+1. dist内に`env.php` ファイルを作成して下記内容を作成します。
+ポート番号はそれぞれ使用している番号に置き換えてください。
+```
+<?php
+$DB_HOST="localhost:8889";
+$DB_NAME="othello";
+$DB_USERNAME="root";
+$DB_PASSWORD="root";
+?>
+```
+
