@@ -1,13 +1,9 @@
 $(function() {
   $("body").append('<div id="navi"></div>');
   $("#navi").append(
-    '<a href="index.php">TOP</a>',
-    // '<a href="match_2.html">MATCH</a>',
-    // '<a href="roomsearch_3.html">ROOM SEARCH</a>',
-    // '<a href="roommake_4.html">ROOM MAKE</a>',
-    '<a href="roomsearch.php">ROOM SEARCH</a>',
-    '<a href="game.php">GAME</a>'
-    // '<a href="http://localhost:28889/db_structure.php?server=1&db=database" target="_blank">phpMyAdmin</a>'
+    '<a href="./index.php">TOP</a>',
+    '<a href="./members.php">MEMBER</a>',
+    '<a href="./sample/index.php">SESSION sample</a>'
   );
 });
 
@@ -45,23 +41,6 @@ function escape_html(string) {
     }[match];
   });
 }
-
-// function clean(str) {
-//   var retVal = "";
-//   for (var i = 0; i < str.length; i++) {
-//     retVal += isHanEisu(str.substr(i, 1)) ? str.substr(i, 1) : "";
-//   }
-//   return retVal;
-// }
-
-// function isHanEisu(str) {
-//   str = str == null ? "" : str;
-//   if (str.match(/^[A-Za-z0-9]*$/)) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
 
 var strDis = s => {
   var result = [];
