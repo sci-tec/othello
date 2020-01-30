@@ -1,364 +1,284 @@
-/*
- */
+const TABLE_ID = getUrlVars().tableId;
+const MY_NAME = getUrlVars().player;
+const MY_COLOR = parseInt(getUrlVars().color);
+const Y_AXIS = 8;
+const X_AXIS = 8;
+const BLACK = "0";
+const WHITE = "1";
 
-const tableId = getUrlVars().tableId;
-const name = getUrlVars().player;
-const colorNum = parseInt(getUrlVars().color);
-if (name === undefined) {
-  confirm("tableIdが指定されてません。\ntableIdを指定してください。")
-    ? (location.href = "./roomsearch.php")
-    : console.log(tableId);
-}
+var cells = []; // セルの状態
+var currentColor = BLACK; // 現在のプレイヤー
+var counts = { hint0: 0, hint1: 0, black: 0, white: 0}; // コマとヒントの数
 
-var row,
-  yAxis,
-  xAxis,
-  player,
-  myColor,
-  opponentColor,
-  pieces,
-  hint,
-  limit,
-  info;
-row = [];
-yAxis = 8;
-xAxis = 8;
-player = 0; // 0:先攻(黒), 1:後攻(白)
-myColor = 0;
-opponentColor = 1;
-limit = 30;
 $(function() {
-  initBoard();
-  checkHint();
-  boardCheck();
-  countdown();
-  putPieces();
+  if (TABLE_ID === undefined) {
+    alert("tableIdが指定されてません。\ntableIdを指定してください。")
+    location.href = "./roomsearch.php";
+  } else {
+    addStyle();
+    initPusher();
+    addEvents();
+    createInitialData();
+    refresh();
+  }
 });
 
-function initBoard() {
-  var row, grid, channel;
-  console.log(tableId, colorNum);
-  channel = pusher.subscribe(tableId);
-  console.log(pusher, channel);
-  channel.bind("plot", function(data) {
-    console.log("plot");
+function addStyle() {
+  $("body").append(`<style>.currentPlayer {background-color: #083a;}</style>`);
+}
+
+// pusher初期化
+function initPusher() {
+  pusher.subscribe(TABLE_ID).bind("plot", function(data) {
     console.log(data);
-    sendInfo(parseInt(data.x), parseInt(data.y), parseInt(data.color));
-  });
-  initInfo();
-  // 初期盤面を作成
-  for (var y = 0; y < yAxis; y++) {
-    row = $(`<div class="row y${y}"></div>`);
-    for (var x = 0; x < xAxis; x++) {
-      if ((x === 3 && y === 4) || (x === 4 && y === 3)) {
-        pieces = '<div class="pieces0"></div>';
-        grid = $(`<div class="grid x${x}-y${y}">${pieces}</div></div>`);
-      } else if ((x === 3 && y === 3) || (x === 4 && y === 4)) {
-        pieces = '<div class="pieces1"></div>';
-        grid = $(`<div class="grid x${x}-y${y}">${pieces}</div></div>`);
-      } else {
-        pieces = '<div class="pieces"></div>';
-        grid = $(`<div class="grid x${x}-y${y}">${pieces}</div></div>`);
-      }
-      $(row).append(grid);
-    }
-    $(".board").append(row);
-  }
-}
-
-function initInfo() {
-  // 初期情報を作成
-  for (var y = 0; y < yAxis; y++) {
-    var grid = [];
-    for (var x = 0; x < xAxis; x++) {
-      if ((x === 3 && y === 4) || (x === 4 && y === 3)) {
-        grid.push({
-          coordinates: `x${x}-y${y}`,
-          contents: 0
-        });
-      } else if ((x === 3 && y === 3) || (x === 4 && y === 4)) {
-        grid.push({
-          coordinates: `x${x}-y${y}`,
-          contents: 1
-        });
-      } else {
-        grid.push({
-          coordinates: `x${x}-y${y}`,
-          contents: ""
-        });
-      }
-    }
-    row.push(grid);
-  }
-}
-
-function checkHint() {
-  // ヒントを表示させる場所を探す
-  searchHint([-1, 0]);
-  searchHint([1, 0]);
-  searchHint([0, -1]);
-  searchHint([0, 1]);
-  searchHint([-1, -1]);
-  searchHint([-1, 1]);
-  searchHint([1, -1]);
-  searchHint([1, 1]);
-}
-
-function searchHint(direction) {
-  var chainX, chainY;
-  for (var y = 0; y < yAxis; y++) {
-    for (var x = 0; x < xAxis; x++) {
-      chainY = y + direction[0];
-      chainX = x + direction[1];
-      if (chainY >= 0 && chainY < 8 && chainX >= 0 && chainX < 8) {
-        while (
-          row[y][x].contents === "" &&
-          row[chainY][chainX].contents === opponentColor
-        ) {
-          if (
-            !row[chainY + direction[0]] ||
-            !row[chainY + direction[0]][chainX + direction[1]]
-          ) {
-            break;
-          } else if (
-            row[chainY + direction[0]][chainX + direction[1]].contents ===
-            myColor
-          ) {
-            if (!player) {
-              hint = '<div class="hint0"></div>';
-              $(`.x${x}-y${y}`)[0].innerHTML = hint;
-            } else {
-              hint = '<div class="hint1"></div>';
-              $(`.x${x}-y${y}`)[0].innerHTML = hint;
-            }
-            break;
-          }
-          chainY += direction[0];
-          chainX += direction[1];
-        }
-      }
-    }
-  }
-}
-
-function putPieces() {
-  $(".grid").click(function() {
-    var y = Array.from(this.classList[1])[4];
-    var x = Array.from(this.classList[1])[1];
-    var color = parseInt(Array.from(hint)[16]);
-    sendInfo(parseInt(x), parseInt(y), color);
-    let url = `./sender.php?tableId=${tableId}&type=plot&x=${x}&y=${y}&color=${color}`;
-    console.log(url);
-    $.get(url, function(data, status) {
-      console.log(data);
-      console.log(status);
-      if (status != "success") console.log("送信エラー");
-    });
+    plot(data.x, data.y, data.color);
   });
 }
 
-function sendInfo(x, y, player) {
-  var el = $(`.x${x}-y${y}`)[0];
-  console.log(x, y, player);
+// コマの裏返し処理
+function plot(x, y, color) {
   if (
-    row[y][x].contents === "" &&
-    el.innerHTML === hint
-    // player === colorNum
+    cells[y][x].contents === ""
+    && cells[y][x].hint !== ""
   ) {
-    // 駒の色を変更
-    changePieces(search(x, y, [-1, 0])); // [y,x]
-    changePieces(search(x, y, [1, 0]));
-    changePieces(search(x, y, [0, -1]));
-    changePieces(search(x, y, [0, 1]));
-    changePieces(search(x, y, [-1, -1]));
-    changePieces(search(x, y, [-1, 1]));
-    changePieces(search(x, y, [1, -1]));
-    changePieces(search(x, y, [1, 1]));
-    el.innerHTML = `<div class="pieces${player}"></div>`;
-    row[y][x].contents = player;
-    pushDate(el.classList[1], row[y][x].contents);
-    // プレイヤーを変える
-    changePlayer();
-    stop();
-    countdown();
+    flip(x, y, color);
 
-    // ヒントの表示をリセット
-    resetHint();
-    checkHint();
-    // ボード内を監視
-    boardCheck();
-  }
-}
-
-function search(x, y, direction) {
-  var chainY = y + direction[0];
-  var chainX = x + direction[1];
-  var change = [];
-  if (chainY >= 0 && chainY < 8 && chainX >= 0 && chainX < 8) {
-    while (row[chainY][chainX].contents === opponentColor) {
-      change.push(row[chainY][chainX]);
-      if (
-        !row[chainY + direction[0]] ||
-        !row[chainY + direction[0]][chainX + direction[1]] ||
-        row[chainY + direction[0]][chainX + direction[1]].contents === ""
-      ) {
-        change = [];
-        break;
-      } else if (
-        row[chainY + direction[0]][chainX + direction[1]].contents === myColor
-      ) {
-        break;
-      }
-      chainY += direction[0];
-      chainX += direction[1];
+    // (表示をさせずに)次のプレイヤーのhint数を得るために個別に関数を実行
+    let nextColor = getOpponentColor();
+    refresh_hint(nextColor); 
+    refresh_counts_data();
+    
+    if (
+      !(counts.hint0 === 0 && nextColor === BLACK)
+      && !(counts.hint1 === 0 && nextColor === WHITE)
+    ) {
+      currentColor = nextColor; // プレイヤー変更
     }
+    refresh();
   }
-  return change;
 }
 
-function changePieces(array) {
-  var grid;
-  if (array.length !== 0) {
-    for (let i = 0; i < array.length; i++) {
-      grid = $(`.${array[i].coordinates}`)[0];
-      grid.innerHTML = `<div class="pieces${player}"></div>`;
-      array[i].contents = player;
+// クリックイベント
+function addEvents() {
+  $(document).on("click", ".grid", function () {
+    var y = $(this).data("y");
+    var x = $(this).data("x");
+    var hint = $(this).data("hint");
+    if( hint === MY_COLOR ) sendToPusher(parseInt(x), parseInt(y), MY_COLOR);
+    // sendToPusher(parseInt(x), parseInt(y), MY_COLOR);
+  });
+}
+
+// データの初期化
+function createInitialData() {
+  cells=[];
+  for (var y = 0; y < Y_AXIS; y++) {
+    var tmp_row = [];
+    for (var x = 0; x < X_AXIS; x++) {
+      tmp_row.push({ x:x, y:y, contents: "", hint: "" });
     }
+    cells.push(tmp_row);
   }
+  cells[4][3].contents = cells[3][4].contents = BLACK;
+  cells[3][3].contents = cells[4][4].contents = WHITE;
 }
 
-function changePlayer() {
-  if (!player) {
-    player = 1;
-    myColor = 1;
-    opponentColor = 0;
-  } else {
-    player = 0;
-    myColor = 0;
-    opponentColor = 1;
-  }
+// 相手の駒を取得
+function getOpponentColor(color = currentColor) {
+  return color === BLACK ? WHITE : BLACK;
 }
 
-function resetHint() {
-  for (var y = 0; y < yAxis; y++) {
-    for (var x = 0; x < xAxis; x++) {
-      if ($(`.x${x}-y${y}`)[0].innerHTML === hint) {
-        $(`.x${x}-y${y}`)[0].innerHTML = '<div class="pieces"></div>';
-      }
-    }
-  }
+// コマを裏返す
+function flip(x, y, color) {
+  cells[y][x].contents = color; // クリック位置にコマを配置
+  // flipByDirection(x, y, color, [-1, 0]); // [y,x]
+  // flipByDirection(x, y, color, [1, 0]);
+  // flipByDirection(x, y, color, [0, -1]);
+  // flipByDirection(x, y, color, [0, 1]);
+  // flipByDirection(x, y, color, [-1, -1]);
+  // flipByDirection(x, y, color, [-1, 1]);
+  // flipByDirection(x, y, color, [1, -1]);
+  // flipByDirection(x, y, color, [1, 1]);
+
+  // ↑はこんな書き方↓もできます。参考まで。
+  [
+    [-1, 0],[1, 0],[0, -1],[0, 1],[-1, -1],[-1, 1],[1, -1],[1, 1]
+  ].map(i=>{
+    flipByDirection(x, y, color, i);
+  });
 }
 
-function boardCheck() {
-  var hintNum, hint0, hint1, notEmpty, black, white;
-  hintNum = 0;
-  hint0 = 0;
-  hint1 = 0;
-  notEmpty = 0;
-  black = {
-    num: 0,
-    contents: []
-  };
-  white = {
-    num: 0,
-    contents: []
-  };
-  for (var y = 0; y < yAxis; y++) {
-    for (var x = 0; x < xAxis; x++) {
-      if ($(`.x${x}-y${y}`)[0].innerHTML === '<div class="hint0"></div>')
-        hint0++;
-      if ($(`.x${x}-y${y}`)[0].innerHTML === '<div class="hint1"></div>')
-        hint1++;
-      if (row[y][x].contents === 0 || row[y][x].contents === 1) notEmpty++;
-      if (row[y][x].contents === 0) {
-        black.num++;
-        black.contents.push(row[y][x]);
-      }
-      if (row[y][x].contents === 1) {
-        white.num++;
-        white.contents.push(row[y][x]);
-      }
-    }
-  }
-  $(".player1")[0].children[2].innerHTML = "×" + black.num;
-  $(".player2")[0].children[2].innerHTML = "×" + white.num;
-  if ((!hint0 && player === 0) || (!hint1 && player === 1)) {
-    changePlayer();
-    checkHint();
-    for (var y = 0; y < yAxis; y++) {
-      for (var x = 0; x < xAxis; x++) {
-        if ($(`.x${x}-y${y}`)[0].innerHTML === hint) {
-          hintNum++;
-        }
-      }
-    }
-  }
-  if (
-    notEmpty === 64 ||
-    (!hint0 && !hint1 && notEmpty !== 64 && !hintNum) ||
-    !black.num ||
-    !white.num
-  )
-    // 対戦結果を表示
-    decideWinner();
-}
-
-function decideWinner() {
-  var black = 0;
-  var white = 0;
-  for (var y = 0; y < yAxis; y++) {
-    for (var x = 0; x < xAxis; x++) {
-      if (row[y][x].contents === 0) {
-        black++;
-      } else if (row[y][x].contents === 1) {
-        white++;
-      }
-    }
-  }
-  if (black > white) {
-    stop();
-    $(".time_limit")[0].innerHTML = `残り ---秒`;
-    console.log("winner Black!!");
-    console.log(`black:${black} white:${white}`);
-  } else if (black < white) {
-    stop();
-    $(".time_limit")[0].innerHTML = `残り ---秒`;
-    console.log("winner White!!");
-    console.log(`black:${black} white:${white}`);
-  } else {
-    stop();
-    $(".time_limit")[0].innerHTML = `残り ---秒`;
-    console.log("This game is a draw...");
-    console.log(`black:${black} white:${white}`);
-  }
-}
-
-function countdown() {
-  $(".time_limit")[0].innerHTML = `残り ${limit}秒`;
-  var time = limit;
-  timer = setInterval(() => {
-    time--;
-    $(".time_limit")[0].innerHTML = `残り ${time}秒`;
-    if (time < 1) {
-      stop();
-      // !player ? alert("黒がパスをしました。") : alert("白がパスをしました。");
-      changePlayer();
-      resetHint();
-      checkHint();
-      boardCheck();
-      countdown();
-    }
-  }, 1000);
-}
-
-function stop() {
-  clearInterval(timer);
-}
-
-function pushDate(position, color) {
-  let url = `./sender.php?position=${position}&color=${color}&tableId=${tableId}`;
-  console.log(url);
-  $.get(url, function(data, status) {
+// pusher送信
+function sendToPusher(x, y, color) {
+  let url = `./sender.php?tableId=${TABLE_ID}&type=plot&x=${x}&y=${y}&color=${color}`;
+  $.get(url, function(_, status) {
     if (status != "success") console.log("送信エラー");
   });
+}
+
+// 各方向にコマを裏返しcellsに反映
+function flipByDirection(x, y, color, direction) {
+  let sy = direction[0];
+  let sx = direction[1];
+  var chainY = parseInt(y) + sy;
+  var chainX = parseInt(x) + sx;
+  var arr = [];
+  var change = [];
+
+  while ( 
+    chainY >= 0 
+    && chainY < Y_AXIS 
+    && chainX >= 0 
+    && chainX < X_AXIS
+  ) {
+    arr.push(cells[chainY][chainX]);
+    chainY += direction[0];
+    chainX += direction[1];
+  }
+
+  for(var i=0; i<arr.length; i++) {
+    if( arr[i].contents === "" || i === arr.length - 1 ) {
+      change = [];
+      break;
+    } else if ( arr[i].contents === getOpponentColor() ) {
+      change.push(arr[i]);
+    } else {
+      for(var j=0; j<change.length; j++) {
+        change[j].contents = color;
+      }
+      break;
+    }
+  }
+}
+
+// 結果発表
+function showWinner() {
+  if (counts.black > counts.white) {
+    console.log("winner Black!!");
+  } else if (counts.black < counts.white) {
+    console.log("winner White!!");
+  } else {
+    console.log("This game is a draw...");
+  }
+  console.log(`black:${counts.black} white:${counts.white}`);
+}
+
+// cellsとcurrentColorよりヒントを作成し、カウント数を更新。勝敗判定まで
+function refresh() {
+  refresh_hint(); // ヒント情報を cellsに反映
+  refresh_counts_data(); // 白黒とヒント数を集計してcountsを更新
+  refresh_board(); // cells情報をボードに表示
+  // dump();
+
+  if (
+    counts.hint0 + counts.hint1 === 0
+    || counts.black + counts.white === X_AXIS * Y_AXIS
+    || counts.black === 0
+    || counts.white === 0
+  ) showWinner(); // 終了判定
+}
+
+// ヒント情報を cellsに反映
+function refresh_hint(color = currentColor) {
+  for (var y = 0; y < Y_AXIS; y++) {
+    for (var x = 0; x < X_AXIS; x++) {
+      cells[y][x].hint = "";
+      if( cells[y][x].contents === "") {
+        refreshHintByDirection(x, y, color, [-1, 0]);
+        refreshHintByDirection(x, y, color, [1, 0]);
+        refreshHintByDirection(x, y, color, [0, -1]);
+        refreshHintByDirection(x, y, color, [0, 1]);
+        refreshHintByDirection(x, y, color, [-1, -1]);
+        refreshHintByDirection(x, y, color, [-1, 1]);
+        refreshHintByDirection(x, y, color, [1, -1]);
+        refreshHintByDirection(x, y, color, [1, 1]);
+      }
+    }
+  }
+}
+
+// 各方向毎にhint判定
+function refreshHintByDirection(x, y, color, direction) {
+  var chainY = y;
+  var chainX = x;
+  var canFlip = false;
+  var arr = [];
+
+  while ( 
+    chainY >= 0 
+    && chainY < Y_AXIS 
+    && chainX >= 0 
+    && chainX < X_AXIS
+  ) {
+    arr.push(cells[chainY][chainX]);
+    chainY += direction[0];
+    chainX += direction[1];
+  }
+
+  for(var i=1; i<arr.length; i++) {
+    if( arr[i].contents === "" || i === arr.length - 1 ) {
+      canFlip = false;
+      break;
+    } else if ( arr[i].contents === getOpponentColor(color) ) {
+      canFlip = true;
+    } else {
+      if(canFlip && cells[y][x].hint !== color) {
+        cells[y][x].hint = color;
+      }
+      break;
+    }
+  }
+}
+
+// 白黒とヒント数を集計してcountsを更新
+function refresh_counts_data() {
+  counts = { hint0: 0, hint1: 0, black: 0, white: 0};
+  for (var y = 0; y < Y_AXIS; y++) {
+    for (var x = 0; x < X_AXIS; x++) {
+      if (cells[y][x].hint === BLACK) counts.hint0++;
+      if (cells[y][x].hint === WHITE) counts.hint1++;
+      if (cells[y][x].contents === BLACK) counts.black++;
+      if (cells[y][x].contents === WHITE) counts.white++;
+    }
+  }
+}
+
+// cellsとcountsを元に板を更新
+function refresh_board() {
+  $(".board").html("");
+  for (var y = 0; y < Y_AXIS; y++) {
+    var tmp_row = $(`<div class="row y${y}"></div>`);
+    for (var x = 0; x < X_AXIS; x++) {
+      var tmp_hint = cells[y][x].hint !== "" 
+        ? `<div class="hint${cells[y][x].hint}"></div>` 
+        : "";
+      var tmp_piede = `<div class="pieces${cells[y][x].contents}">${tmp_hint}</div>`;
+      $(tmp_row).append(`
+        <div class="grid"
+          data-x=${x}
+          data-y=${y}
+          data-hint="${cells[y][x].hint}"
+          data-contents=${cells[y][x].contents}
+        >${tmp_piede}</div>`
+      );
+    }
+    $(".board").append(tmp_row);
+  }
+  $(".player1")[0].children[2].innerHTML = "×" + counts.black;
+  $(".player2")[0].children[2].innerHTML = "×" + counts.white;
+  $(".player1, .player2").removeClass("currentPlayer");
+  let player = currentColor == BLACK ? ".player1" : ".player2";
+  $(player).addClass("currentPlayer");
+}
+
+// 現在の変数を表示(開発用)
+function dump() {
+  for (var y = 0; y < Y_AXIS; y++) {
+    var arr = [];
+    for (var x = 0; x < X_AXIS; x++) {
+      arr.push(cells[y][x].contents+":"+cells[y][x].hint);
+    }
+    console.log(arr);
+  }
+  console.log("currentColor:",currentColor,counts);
 }
