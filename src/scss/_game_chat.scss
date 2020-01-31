@@ -32,7 +32,7 @@ html {
 
 
   //ボタン送信ボタンのｃｓｓ
- .send{
+ .abc{
   box-shadow: 3px 4px 0px 0px #ffffff;
 	background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
 	background-color:#ededed;
@@ -51,14 +51,12 @@ html {
   right: 10%;
 
  }
- .send:hover{
+ 
+ .abc:hover{
   background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
 	background-color:#dfdfdf;
  }
- .send:active{
-  position:relative;
-	top:1px;
- }
+
 
  //名前テキストボックス変更
  

@@ -1,3 +1,11 @@
+<?php
+    // sessionの開始。既に開始されていれば再開します。
+    session_start();
+    $username = $_SESSION['username'];
+    if($username == "") {
+        header('Location: ./index.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -19,7 +27,7 @@
 <main>
     <div class="container">
         <div class="content">
-            <h1>player: <?php echo $_GET["player"]; ?></h1>
+            <h1>player: <?php echo $username; ?></h1>
             <div class="row">
                 <input type="text" name="room" placeholder="ルーム名" class="room">
                 <a href="#" id = "make" class="search">make</a> 
