@@ -4,11 +4,12 @@
     $newGET[$key] = preg_replace('/[^0-9a-zA-Z]/', '', $value);
   }
 
-  /*/
-  sendByPHP($newGET); // mac
-  /*/
-  sendToNodeServer($newGET); // mac以外
-  //*/
+  require("./env.php"); // 外部化した接続情報
+  if(isset($USE_PHPSERVER) && $USE_PHPSERVER=="true") {
+    sendByPHP($newGET); // mac
+  } else {
+    sendToNodeServer($newGET); // mac以外
+  }
 
   function sendByPHP($newGETParams) {
     require __DIR__ . '/vendor/autoload.php';
