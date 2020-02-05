@@ -18,13 +18,12 @@
     }
 
     function checkLogin($u, $p) {
-        //ここでdbアクセスをしてpwチェック
-        // 今は単純に以下の条件でログインできるものとする
-        // ユーザ名が空白ではなく
-        // パスワード"123"
-        return ($u != "" && $p == "123");
+        require_once("./db.php");
+        $items = getSQLResult("select count(*) from users where username='".$u."' and password='".$p."'");
+        $count = $items -> fetchColumn();
+        echo($count);
+        return $count == 1;
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
