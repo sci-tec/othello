@@ -2,6 +2,7 @@
     // sessionの開始。既に開始されていれば再開します。
     session_start();
     $username = $_SESSION['username'];
+    $userid = $_SESSION['userid'];
     if($username == "") {
         header('Location: ./index.php');
     }
