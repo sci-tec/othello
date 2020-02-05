@@ -2,6 +2,7 @@
     // sessionの開始。既に開始されていれば再開します。
     session_start();
     $username = $_SESSION['username'];
+    $userid = $_SESSION['userid'];
     if($username == "") {
         header('Location: ./index.php');
     }
@@ -25,14 +26,15 @@
 </head>
 
 <body id="roomsearch_3">
-<main>
     <div class="container">
         <div class="content">
             <h1>player: <?php echo $username; ?></h1>
+            <form method="post" action="roomsearch.php">
             <div class="row">
                 <input type="text" name="room" placeholder="ルーム名" class="room">
-                <a href="#" id = "make" class="search">make</a> 
+                <input class="makes" type="submit" name="send" value="make" >
             </div>
+            </form>
             <div class='text'></div>
             <div class="row">
                 <input type="text" name="room" placeholder="ルーム名" class="room">
@@ -42,71 +44,61 @@
             
             
             <?php // DBからデータ(投稿内容)を取得 
-    $stmt = select(); 
-    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
+    //$stmt = select(); 
+    require_once("./db.php");
+    $items = getSQLResult("select * from rooms");
+    foreach ($items->fetchAll(PDO::FETCH_ASSOC) as $rooms) {
         $item = '<div id = "item" class="row">'
-              . '<div class="room2">${tables[i]}</div>'
-              . '<a href="./game.php?tableId=${tables[i]}&player=${player}&color=${0}" class="myButton6 black">black</a>'
-              . '<a href="./game.php?tableId=${tables[i]}&player=${player}&color=${1}" class="myButton6 white">white</a>'
-              . '<a href="./game.php?tableId=${tables[i]}&player=${player}&color=${-1}" class="myButton6 watching">watching</a>'
+              . '<div class="room2">'.$rooms['name'].'</div>'
+              . '<a href="./game.php?tableId='.$rooms['name'].'&player='.$userid.'&color=${0}" class="myButton6 black">black</a>'
+              . '<a href="./game.php?tableId='.$rooms['name'].'&player='.$userid.'&color=${1}" class="myButton6 white">white</a>'
+              . '<a href="./game.php?tableId='.$rooms['name'].'&player='.$userid.'&color=${-1}" class="myButton6 watching">watching</a>'
           . '</div>';
         echo $item;
 
     }
+    
+    // 投稿内容を登録
+    if(isset($_POST["send"])) {
+        insert();
+    }
 
-    // // 投稿内容を登録
-    // if(isset($_POST["send"])) {
-    //     insert();
-    //     // 投稿した内容を表示
-    //     $stmt = select_new();
-    //     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
-    //         echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$message['name']."：".$message['message'].":".$message['time']."</div></div>";
-    //         // echo $message['time'],"：　",$message['name'],"：",$message['message'];
-    //         echo nl2br("\n");
-    //     }
-    // }
 
     // DB接続
-    function connectDB() {
-        $user = "root";
-        $pass = "root";
-        $dbh = new PDO('mysql:host=localhost:8889;dbname=othello;charset=utf8', $user, $pass);
+    // function connectDB() {
+    //     return new PDO('mysql:host='.$DB_HOST.';dbname='.$DB_NAME.';charset=utf8', $DB_USERNAME, $DB_PASSWORD);
+    // }
 
-        return $dbh;
-    }
-
-    // DBから投稿内容を取得
-    function select() {
-        $dbh = connectDB();
-        $sql = "SELECT * FROM rooms ORDER BY id";
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute();
-        return $stmt;
-    }
+    // // DBから投稿内容を取得
+    // function select() {
+    //     require_once("./db.php");
+    //     $dbh = getDBH();
+    //     $sql = "SELECT * FROM message ORDER BY time";
+    //     $stmt = $dbh->prepare($sql);
+    //     $stmt->execute();
+    //     return $stmt;
+    // }
 
     // // DBから投稿内容を取得(最新の1件)
     // function select_new() {
-    //     $dbh = connectDB();
+    //     require_once("./db.php");
+    //     $dbh = getDBH();
     //     $sql = "SELECT * FROM message ORDER BY time desc limit 1";
     //     $stmt = $dbh->prepare($sql);
     //     $stmt->execute();
     //     return $stmt;
     // }
 
-    // // DBから投稿内容を登録
-    // function insert() {
-    //     $dbh = connectDB();
-    //     $sql = "INSERT INTO message (name, message, time) VALUES (:name, :message, now())";
-    //     $stmt = $dbh->prepare($sql);
-    //     $params = array(':name'=>$_POST['name'], ':message'=>$_POST['message']);
-    //     $stmt->execute($params);
-    // }
-?>            
-            
-            
+    // DBから投稿内容を登録
+    function insert() {
+        require_once("./db.php");
+        $name = $_POST['room'];
+        $sql = "insert INTO rooms (name,members) VALUES ('".$name."','')";
+        execSQL($sql);
+    }
+?>
             </div>
         </div>
     </div>
-</main>
 </body>
 </html>

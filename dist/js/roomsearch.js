@@ -1,5 +1,5 @@
 $(function(){
-  let tables = ["table001","table002","table003","table004","table005","table006","table007","table008","table009","table010"];
+  let tables = [];
   let player = getUrlVars().player;
   $('#make').on('click',function(){//＋ボタンを押したとき
     var s = strDis($(".room").val())
