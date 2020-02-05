@@ -77,6 +77,25 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `win`, `lose`, `count`) VALUES
+(1, 'kouhei', '123', NULL, NULL, NULL),
+(2, 'hiroaki', '123', NULL, NULL, NULL),
+(3, 'can', '123', NULL, NULL, NULL),
+(4, 'shoya', '123', NULL, NULL, NULL),
+(5, 'aren', '123', NULL, NULL, NULL),
+(6, 'yuta', '123', NULL, NULL, NULL),
+(7, 'yasuhiro', '123', NULL, NULL, NULL),
+(8, 'akifumi', '123', NULL, NULL, NULL),
+(9, 'junki', '123', NULL, NULL, NULL),
+(10, 'ryuji', '123', NULL, NULL, NULL),
+(11, 'reo', '123', NULL, NULL, NULL),
+(12, 'hajime', '123', NULL, NULL, NULL);
+
+
+--
 -- Indexes for dumped tables
 --
 
