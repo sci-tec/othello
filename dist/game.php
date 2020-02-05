@@ -60,7 +60,7 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- <script src="js/push_game.js"></script> -->
     <script src="js/app.js"></script>
-    <script src="js/othello2.js"></script>
+    <script src="js/othello.js"></script>
 </body>
 
 </html>
