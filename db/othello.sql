@@ -96,6 +96,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `win`, `lose`, `count`) VALUE
 (11, 'reo', '123', NULL, NULL, NULL),
 (12, 'hajime', '123', NULL, NULL, NULL);
 
+
 --
 -- Indexes for dumped tables
 --
