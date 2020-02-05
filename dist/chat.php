@@ -16,7 +16,7 @@
 <body id="game_chat">            
     <!-- header 表示固定表示 -->
     <div class="header">
-        <!-- <p class="chat-str">チャット</p> -->
+        <p class="chat-str">チャット</p>
         <form method="post" action="chat.php">
             <div class="font">
                 <!-- <div class="left"> 名前　   　　　<input type="text" name="name"　size="15" placeholder="名前を入力"> </div> -->
@@ -25,8 +25,9 @@
                 <div class="right"><input type="text" name="message"　size="15" placeholder="メッセージ入力   Enterを押すと送信"></div>
             </div>
             <!-- <input class="send" name="send" type="submit" value="送信"> -->
+
             <input class="abc" type="submit" name="send" value="送信" >　
-            
+
         </form>
         <!-- <p class="font">チャット履歴</p> -->
     </div>
