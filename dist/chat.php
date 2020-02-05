@@ -19,15 +19,10 @@
         <p class="chat-str">チャット</p>
         <form method="post" action="chat.php">
             <div class="font">
-<<<<<<< HEAD
-                <div class="left"> 名前　   　　　<input type="text" name="name"　size="15" placeholder="名前を入力"> </div>
-                <div class="right"> メッセージ    　<input type="text" name="message"　size="15" placeholder="メッセージ入力"></div>
-=======
                 <!-- <div class="left"> 名前　   　　　<input type="text" name="name"　size="15" placeholder="名前を入力"> </div> -->
                 <input type="hidden" name="name" value="<?php echo $_SESSION["username"]; ?>">
                 <div><?php echo $_SESSION["username"]; ?></div>
                 <div class="right"><input type="text" name="message"　size="15" placeholder="メッセージ入力   Enterを押すと送信"></div>
->>>>>>> 60b3a959b9c84953f45674d6d171a5e2886680a9
             </div>
             <!-- <input class="send" name="send" type="submit" value="送信"> -->
 
@@ -48,13 +43,6 @@
         echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$message['name']."：".$message['message'].":".$message['time']."</div></div>";
     }
  
-<<<<<<< HEAD
-            // DB接続
-            function connectDB() {
-                $user = "root";
-                $pass = "root";
-                $dbh = new PDO('mysql:host=localhost:8889;dbname=othello;charset=utf8', $user, $pass);
-=======
     // 投稿内容を登録
     if(isset($_POST["send"])) {
         insert();
@@ -66,7 +54,6 @@
             echo nl2br("\n");
         }
     }
->>>>>>> 60b3a959b9c84953f45674d6d171a5e2886680a9
 
 
     // DB接続
