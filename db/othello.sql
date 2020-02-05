@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 29, 2020 at 04:35 AM
+-- Generation Time: Jan 28, 2020 at 05:48 AM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -46,9 +46,7 @@ CREATE TABLE `message` (
   `id` tinyint(30) NOT NULL,
   `roomid` tinyint(15) NOT NULL,
   `userid` tinyint(30) NOT NULL,
-  `message` varchar(45) DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` varchar(30) NOT NULL
+  `message` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -72,29 +70,11 @@ CREATE TABLE `rooms` (
 CREATE TABLE `users` (
   `id` tinyint(20) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `password` varchar(20) DEFAULT '123',
-  `win` tinyint(100) DEFAULT NULL,
-  `lose` tinyint(100) DEFAULT NULL,
-  `count` tinyint(200) DEFAULT NULL
+  `password` varchar(20) NOT NULL,
+  `win` tinyint(100) NOT NULL,
+  `lose` tinyint(100) NOT NULL,
+  `count` tinyint(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `win`, `lose`, `count`) VALUES
-(1, 'kouhei', '123', NULL, NULL, NULL),
-(2, 'hiroaki', '123', NULL, NULL, NULL),
-(3, 'can', '123', NULL, NULL, NULL),
-(4, 'shoya', '123', NULL, NULL, NULL),
-(5, 'aren', '123', NULL, NULL, NULL),
-(6, 'yuta', '123', NULL, NULL, NULL),
-(7, 'yasuhiro', '123', NULL, NULL, NULL),
-(8, 'akifumi', '123', NULL, NULL, NULL),
-(9, 'junki', '123', NULL, NULL, NULL),
-(10, 'ryuji', '123', NULL, NULL, NULL),
-(11, 'reo', '123', NULL, NULL, NULL),
-(12, 'hajime', '123', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -145,12 +125,6 @@ ALTER TABLE `message`
 --
 ALTER TABLE `rooms`
   MODIFY `id` tinyint(30) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` tinyint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
