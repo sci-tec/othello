@@ -56,9 +56,26 @@ if (isset($_POST["send"])) {
     // 投稿した内容を表示
     $stmt = select_new();
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
-        echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>" . $message['name'] . "：" . $message['message'] . ":" . $message['time'] . "</div></div>";
-        // echo $message['time'],"：　",$message['name'],"：",$message['message'];
-        echo nl2br("\n");
+
+        // $name = $user['name'];
+        $name = "???";
+        // echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$name."：".$message['message'].":".$message['time']."</div></div>";
+        echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>" . $name . "：" . $message['message'] . "</div></div>";
+    }
+
+    // 投稿内容を登録
+    if (isset($_POST["send"])) {
+        insert();
+        // 投稿した内容を表示
+        $stmt = select_new();
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
+            // echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$message['name']."：".$message['message'].":".$message['time']."</div></div>";
+            // $name = $user['name'];
+            $name = "???";
+            echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>" . $name . "：" . $message['message'] . "</div></div>";
+            // echo $message['time'],"：　",$message['name'],"：",$message['message'];
+            // echo nl2br("\n");
+        }
     }
 }
 
@@ -72,8 +89,13 @@ if (isset($_POST["send"])) {
 function select()
 {
     require_once("./db.php");
+    // $userid = $_SESSION["userid"];
+    // $roomid = $_SESSION["roomid"];
+    $userid = 1;
+    $roomid = 2;
     $dbh = getDBH();
-    $sql = "SELECT * FROM message ORDER BY time";
+    // $sql = "SELECT * FROM message WHERE id = 2";
+    $sql = "SELECT * FROM message";
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
@@ -84,7 +106,8 @@ function select_new()
 {
     require_once("./db.php");
     $dbh = getDBH();
-    $sql = "SELECT * FROM message ORDER BY time desc limit 1";
+    // $sql = "SELECT * FROM message ORDER BY time desc limit 1";
+    $sql = "SELECT * FROM message ORDER BY id desc limit 1";
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     return $stmt;
@@ -96,11 +119,12 @@ function insert()
     require_once("./db.php");
     $name = $_POST['name'];
     $message = $_POST['message'];
-    // $userid = $_SESSION["userid"];
+    $userid = $_SESSION["userid"];
     // $roomid = $_SESSION["roomid"];
-    $userid = 1;
     $roomid = 2;
-    $sql = "insert INTO message (userid, roomid, name, message, time) VALUES (" . $userid . ", " . $roomid . ", '" . $name . "', '" . $message . "', now())";
+    // $sql = "insert INTO message ( roomid, name, message, time) VALUES ('".$roomid."', '".$name."', '".$message."', now())";
+    $sql = "insert INTO message ( roomid, userid, message) VALUES ('" . $roomid . "', '" . $userid . "', '" . $message . "')";
+    // echo $sql; exit;
     execSQL($sql);
 }
 ?>
