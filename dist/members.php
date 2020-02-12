@@ -13,14 +13,14 @@
     <div class="member">
 
         <P class="funny">Project Manager</p>
-        <p>Uehara Hiroaki(Horoaki) <span class="rink"><a href="https://github.com/horoaki">GitHub</a></span></p>
+        <p>Uehara Hiroaki<span class="rink"><a href="https://github.com/horoaki">GitHub</a></span></p>
         <p>Fatih Can Yildirim <span class="rink"><a href="https://github.com/canistbir">GitHub</a></span></p>
 
-        <p class="funny">Scurity</p>
+        <p class="funny">Security</p>
         <p>Fatih Can Yildirim <span class="rink"><a href="https://github.com/canistbir">GitHub</a></span></p>
 
         <p class="funny">Programmer</p>
-        <p class="funnymin">Flont Program</p>
+        <p class="funnymin">Flont-end Program</p>
         <p>Takayoshi Shoya <span class="rink"><a href="https://github.com/shouya1t">GitHub</a></span></p>
         <p>Tamae Aren <span class="rink"><a href="https://github.com/tamaearen">GitHub</a></span></p>
         <p>Nakama Yuta <span class="rink"><a href="https://github.com/nakamayuta">GitHub</a></span></p>
@@ -29,7 +29,7 @@
         <p>Yokoda Junki <span class="rink"><a href="https://github.com/Jyunki">GitHub</a></span></p>
         <p>Sunabe Ryuji <span class="rink"><a href="https://github.com/ryuji1031">GitHub</a></span></p>
         <p>Matuda Reo <span class="rink"><a href="https://github.com/reom1122">GitHub</a></span></p>
-        <p class="funnymin">Sarver Program</p>
+        <p class="funnymin">Back-end Program</p>
         <p>Nagammine Yasuhiro <span class="rink"><a href="https://github.com/cyfase">GitHub</a></span></p>
         <p>Namikawa Akihumi <span class="rink"><a href="https://github.com/NamikawaAkifumi">GitHub</a></span></p>
         <p class="funnymin">Game Program</p>
