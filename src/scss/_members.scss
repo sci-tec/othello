@@ -41,3 +41,182 @@
         }
     }
 }
+
+@media screen and (max-width: 700px) {
+    $width: 100%;
+    #members{
+        h1{
+            font-size: $width;
+        }
+        
+        .back{
+            font-size: $width;
+        }
+        .member{
+            .rink{
+                font-size: $width;
+            }
+            p{
+                font-size: $width;
+            }
+        
+            .funny{
+                font-size: $width;
+            }
+        
+            .funnymin{
+                font-size: $width;
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    $width: 80%;
+    #members{
+        h1{
+            font-size: $width;
+        }
+    
+        .back{
+            font-size: $width;
+        }
+        .member{
+            .rink{
+                font-size: $width;
+            }
+            p{
+                font-size: $width;
+            }
+    
+            .funny{
+                font-size: $width;
+            }
+    
+            .funnymin{
+                font-size: $width;
+            }
+        }
+    }
+
+}
+
+
+// @media screen and (min-width: 260px) {
+//     $width: 70%;
+//     #members{
+//         h1{
+//             font-size: $width;
+//         }
+    
+//         .back{
+//             font-size: $width;
+//         }
+//         .member{
+//             .rink{
+//                 font-size: $width;
+//             }
+//             p{
+//                 font-size: $width;
+//             }
+    
+//             .funny{
+//                 font-size: $width;
+//             }
+    
+//             .funnymin{
+//                 font-size: $width;
+//             }
+//         }
+//     }
+// }
+
+@media screen and (max-width: 400px) {
+    $width: 76%;
+    #members{
+        h1{
+            font-size: $width;
+        }
+    
+        .back{
+            font-size: $width;
+        }
+        .member{
+            .rink{
+                font-size: $width;
+            }
+            p{
+                font-size: $width;
+            }
+    
+            .funny{
+                font-size: $width;
+            }
+    
+            .funnymin{
+                font-size: $width;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 374px) {
+    $width: 74%;
+    #members{
+        h1{
+            font-size: $width;
+        }
+    
+        .back{
+            font-size: $width;
+        }
+        .member{
+            .rink{
+                font-size: $width;
+            }
+            p{
+                font-size: $width;
+            }
+    
+            .funny{
+                font-size: $width;
+            }
+    
+            .funnymin{
+                font-size: $width;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 360px) {
+    $width: 50%;
+    #members{
+        h1{
+            font-size: $width;
+        }
+    
+        .back{
+            font-size: $width;
+        }
+        .member{
+            .rink{
+                font-size: $width;
+            }
+            p{
+                font-size: $width;
+            }
+    
+            .funny{
+                font-size: $width;
+            }
+    
+            .funnymin{
+                font-size: $width;
+            }
+        }
+    }
+}
+
+
