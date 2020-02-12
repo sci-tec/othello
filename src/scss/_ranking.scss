@@ -1,0 +1,31 @@
+#ranking{
+    .maste-box {
+        position: relative;
+        background-color: #fff;
+        background: repeating-linear-gradient(-45deg, #edf5f4, #edf5f4 10px, #f6faf9 0, #f6faf9 20px);
+        padding: 1em;
+      }
+      .maste-tape{
+        position: absolute;
+        top: -0.75em;
+        background-color: rgba(100,100,100,.3);
+        border-left:4px solid #8BC6CA;
+        padding: 0.25em 2em;
+        color: #454545;
+        transform: rotate(-3deg);
+      }
+      .maste-box p {
+        color: #454545;
+        padding: 15px 10px 10px 10px;
+      }
+      .text{
+        padding: 10px 23px;
+        border: 2px solid #eee;
+        border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+        margin-bottom: 15px;
+        font-size: 18px;
+        margin-top: 50px;
+        font-weight: bold;
+        background-color: rgba(231, 114, 114, 0.3);
+      }
+}
