@@ -24,7 +24,7 @@
     box-shadow: 3px 1px 2px #ccc;
   }
 
-  .search {
+  .makes {
     box-shadow: inset 0px 0px 6px 0px #FFFFFF;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #F9F9F9), to(#E9E9E9));
     background: linear-gradient(to bottom, #F9F9F9 5%, #E9E9E9 100%);
@@ -41,13 +41,13 @@
     margin-left: 15px;
   }
 
-  .search:hover {
+  .makes:hover {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #E9E9E9), to(#F9F9F9));
     background: linear-gradient(to bottom, #E9E9E9 5%, #F9F9F9 100%);
     background-color: #e9e9e9;
   }
 
-  .search:active {
+  .makes:active {
     position: relative;
     margin-top: 1px;
   }

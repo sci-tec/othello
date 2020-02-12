@@ -1,3 +1,12 @@
+<?php
+    // sessionの開始。既に開始されていれば再開します。
+    session_start();
+    $username = $_SESSION['username'];
+    if($username == "") {
+        header('Location: ./index.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
