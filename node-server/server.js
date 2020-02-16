@@ -24,7 +24,7 @@ function send(data) {
         encrypted: true
     });
     
-    pusher.trigger(data["tableId"], "plot", data);
+    pusher.trigger(data["tableId"], data["type"], data);
 }
 
 // ポート指定でlocalhostを起動
