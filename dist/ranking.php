@@ -20,17 +20,28 @@
       <span class="maste-tape">ランキング</span>
 
       <div class="maste-top">
-        <div class ="suuziwaku">
-        <div class="suuzi">1</div>
-        <div class="suuzi">2</div>
-        <div class="suuzi">3</div>
-        <div class="suuzi">4</div>
-        <div class="suuzi">5</div>
-        <div class="suuzi">6</div>
-        <div class="suuzi">7</div>
-        <div class="suuzi">8</div>
-        <div class="suuzi">9</div>
-        <div class="suuzi">10</div>
+      <div class =suuziwaku>
+
+<?php
+    function select()
+    {
+        require_once("./db.php");
+        $dbh = getDBH();
+        $sql = "SELECT * FROM users limit 10";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    $stmt = select();
+    $idx = 1;
+foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $user) {
+    // echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>" . $message['name'] . "：" . $message['message'] . ":" . $message['time'] . "</div></div>";
+  echo '<div class="suuzi">'.$idx.'位 '.$user["username"].' 戦'.$user["count"].'　勝 '.$user["win"].'　負'.$user["lose"].' </div>';
+  $idx++;
+}
+?>
+  
         </div>
 
         
