@@ -37,8 +37,8 @@
             </form>
             <div class='text'></div>
             <div class="row">
-                <input type="text" name="room" placeholder="ルーム名" class="room">
-                <a href="#" class="search">search</a> 
+            <input type="text" name="room" placeholder="ルーム名" class="room1">
+                <a href="#" id = "search" class="search">search</a> 
             </div>
             <div class="roomContainer">
             
@@ -48,7 +48,7 @@
     require_once("./db.php");
     $items = getSQLResult("select * from rooms");
     foreach ($items->fetchAll(PDO::FETCH_ASSOC) as $rooms) {
-        $item = '<div id = "item" class="row">'
+        $item = '<div class="item row">'  
               . '<div class="room2">'.$rooms['name'].'</div>'
               . '<a href="./game.php?tableId='.$rooms['name'].'&player='.$userid.'&color=${0}" class="myButton6 black">black</a>'
               . '<a href="./game.php?tableId='.$rooms['name'].'&player='.$userid.'&color=${1}" class="myButton6 white">white</a>'

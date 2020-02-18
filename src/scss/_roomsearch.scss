@@ -14,6 +14,16 @@
     box-shadow: 3px 1px 2px #ccc;
   }
 
+  .room1 {
+    float: left;
+    padding: 10px;
+    width: 300px;
+    box-sizing: border-box;
+    border-left: double 7px #948e8d;
+    background-color: #f9f9f9;
+    box-shadow: 3px 1px 2px #ccc;
+  }
+
   .room2 {
     padding: 10px;
     font-size: 13px;
@@ -171,9 +181,6 @@
     }
     .row{
       margin-left: 120px;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
     }
 
   }

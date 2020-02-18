@@ -44,31 +44,34 @@ function refresh() {
       </div>`);
   }
 
-
+  var tablesNew = [];
+  var items = $(".item");
+  for (var i= 0; i < items.length; i++){
+    var tn = $(items[i]).find(".room2").html();
+    tablesNew.push(tn);
+  }
+  console.log(tablesNew);
 
   searchWord = function(){
-      var searchResult,
-          searchText = $(this).val,
-          targetText;
-          hitNum;
-     
-      room2 = [];
-      $('#search-result_list').empty();
-      $('.search-result_hit-num').empty();
-      
-      if (searchText !='') {
-        $('.target-area .roomContainer').each(function(){
-            targetText = $(this).text();
-
-            if (targetText.index0f(searchText)!= -1){
-                searchResult.push(targetText);
-            }
-        });
-        for (var i= 0; i < searchResult.length; i++){
-            $('<span>').text(searchResult[i]).appendTo('search-result_list');
+      var searchText = strDis($(".room1").val())
+      var targetText;
+      var tester;
+          console.log(searchText);
+          $(".roomContainer").html("");
+        for (var i= 0; i < tablesNew.length; i++){
+          targetText = searchText;
+          tester = new RegExp(targetText);
+          if(tester.test(tablesNew[i]) || searchText =='' ){
+          $(".roomContainer").append(`
+          <div class="item row">
+              <div class="room2">${tablesNew[i]}</div>
+              <a href="./game.php?tableId=${tablesNew[i]}&player=${player}&color=${0}" class="myButton6 black">black</a>
+              <a href="./game.php?tableId=${tablesNew[i]}&player=${player}&color=${1}" class="myButton6 white">white</a>
+              <a href="./game.php?tableId=${tablesNew[i]}&player=${player}&color=${-1}" class="myButton6 watching">watching</a>
+          </div>`);}
         }
-      };
+        $(".room1").val("");
   };
-  $('#search-text').on('input',searchWord);
-  console.log(search-result_list)
+   $('#search').on('click', searchWord);
+  // $('.room1').change(searchWord);
 });
