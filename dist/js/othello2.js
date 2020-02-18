@@ -47,21 +47,8 @@ const Model = (() => {
       data.cells.push(row);
     }
     // 初期
-    // data.cells[4][3].contents = data.cells[3][4].contents = Data.black;
-    // data.cells[3][3].contents = data.cells[4][4].contents = Data.white;
-
-    data.cells[2][4].contents = Data.black;
-    data.cells[3][3].contents = Data.black;
-    data.cells[3][4].contents = Data.white;
-    data.cells[3][5].contents = Data.black;
-    data.cells[4][2].contents = Data.black;
-    data.cells[4][3].contents = Data.black;
-    data.cells[4][4].contents = Data.white;
-    data.cells[4][5].contents = Data.black;
-    data.cells[4][6].contents = Data.black;
-    data.cells[5][3].contents = Data.white;
-    data.cells[5][4].contents = Data.white;
-    data.cells[5][5].contents = Data.white;
+    data.cells[4][3].contents = data.cells[3][4].contents = Data.black;
+    data.cells[3][3].contents = data.cells[4][4].contents = Data.white;
     refreshHint();
   };
 
@@ -69,7 +56,6 @@ const Model = (() => {
     color === Data.black ? Data.white : Data.black;
 
   const flipByDirection = (x, y, color, direction) => {
-    // console.log(x, y, color, direction);
     const dirY = direction[0];
     const dirX = direction[1];
     var chainY, chainX, arr;
@@ -86,7 +72,6 @@ const Model = (() => {
       chainY += dirY;
       chainX += dirX;
     }
-    // console.log(arr);
     if (
       arr.length &&
       arr[0].contents === getOpponentColor() &&
@@ -106,7 +91,6 @@ const Model = (() => {
       }
       change.forEach(el => (el.contents = color));
     }
-    // console.log(change);
   };
 
   const refreshHint = (color = data.currentColor) => {
@@ -193,7 +177,6 @@ const Model = (() => {
       changePlayer(data.currentColor);
     },
     resetData: () => {
-      // console.log(Data.black);
       data = {
         cells: [],
         currentColor: Data.black,
@@ -263,7 +246,6 @@ const Controller = ((model, view) => {
 
   const gameStart = () => {
     dom.board.html("");
-    // console.log("object");
     if (!data[0].tableId) {
       alert("tableIdが指定されてません。\ntableIdを指定してください。");
     } else {
@@ -279,7 +261,6 @@ const Controller = ((model, view) => {
     var cells = data[1].cells,
       row,
       cell;
-    console.log(cells, model.getData()[1].cell);
     for (var y = 0; y < data[0].y_Axis; y++) {
       row = dom.row(y);
       for (var x = 0; x < data[0].x_Axis; x++) {
@@ -313,7 +294,6 @@ const Controller = ((model, view) => {
   };
 
   const refresh = (color = data[1].currentColor) => {
-    // console.log(data[1].cells, model.getData()[1].cells);
     view.viewCurrentPlayer(color);
     reflectData_board();
     reflectData_board2();
@@ -324,24 +304,18 @@ const Controller = ((model, view) => {
 
   const initPusher = () => {
     pusher.subscribe(data[0].tableId).bind("plot", function(data) {
-      console.log(data);
       model.flip(strDis(data.x), strDis(data.y), strDis(data.color));
       refresh();
     });
     pusher.subscribe(data[0].tableId).bind("finish", function(data) {
-      console.log(data);
       dom.cover.css("display", "block");
     });
     pusher.subscribe(data[0].tableId).bind("restart", function(data) {
-      console.log(data);
-      console.log("restart");
-      // restart処理
       reset();
     });
   };
 
   const senderToPusher = (x, y, color) => {
-    console.log(x, y, color);
     if (!x || !y || !color) return;
     let url = `./sender.php?tableId=${data[0].tableId}&type=plot&x=${x}&y=${y}&color=${color}`;
     $.get(url, function(_, status) {
@@ -358,7 +332,6 @@ const Controller = ((model, view) => {
           data[1].cells[y][x].hint !== "" ||
           data[1].cells[y][x].hint !== undefined
         ) {
-          // console.log(data[1].cells[y][x].hint);
           senderToPusher(x, y, data[1].currentColor);
         }
         if (!data[1].hint && data[1].result === "") {
@@ -372,9 +345,7 @@ const Controller = ((model, view) => {
     postData = { winnerid: session_userId, loserid: session_opponentId }
   ) => {
     $.post("postResult.php", postData, function(result) {
-      // console.log(postData);
       let url = `./sender.php?tableId=${data[0].tableId}&type=finish`;
-      // console.log(url);
       $.get(url, function(_, status) {
         if (status != "success") console.log("送信エラー");
       });
@@ -384,7 +355,6 @@ const Controller = ((model, view) => {
   const reset = () => {
     dom.cover.css("display", "none");
     dom[`${data[1].result}`].css("display", "none");
-    // dom.result.css("display", "none");
     model.resetData();
     data[1] = model.getData()[1];
     refresh();
