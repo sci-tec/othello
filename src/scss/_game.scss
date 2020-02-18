@@ -40,8 +40,8 @@
     height: 29%;
     background-image: url("../img/e.jpg");
   }
-  .result{
-    .win{
+  .result {
+    .win {
       display: none;
       position: absolute;
       font-size: 56px;
@@ -49,8 +49,8 @@
       padding-left: 205px;
       color: orange;
     }
-    .lose{
-      display:none;
+    .lose {
+      display: none;
       position: absolute;
       font-size: 56px;
       padding-top: 315px;
@@ -74,7 +74,18 @@
     }
   }
 }
-
+.cover {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  .retry {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}
 @media screen and (max-height: 550px) {
   #new_game {
     .board {
@@ -134,15 +145,15 @@
       width: 98vw;
       height: 27%;
     }
-    .result{
-      .win{
+    .result {
+      .win {
         position: absolute;
         font-size: 30px;
         padding-top: 366px;
         padding-left: 31px;
         color: orange;
       }
-      .lose{
+      .lose {
         position: absolute;
         font-size: 30px;
         padding-top: 366px;
@@ -175,15 +186,15 @@
       font-size: 30px;
       margin-top: 12px;
     }
-    .result{
-      .win{
+    .result {
+      .win {
         position: absolute;
         font-size: 22px;
         padding-top: 346px;
         padding-left: 40px;
         color: orange;
       }
-      .lose{
+      .lose {
         position: absolute;
         font-size: 22px;
         padding-top: 346px;
@@ -191,6 +202,5 @@
         color: orange;
       }
     }
-
   }
 }
