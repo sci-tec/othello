@@ -27,8 +27,8 @@
     {
         require_once("./db.php");
         $dbh = getDBH();
-        $sql = "SELECT * FROM users limit 10";
-        $stmt = $dbh->prepare($sql);
+        $sql = "SELECT * FROM users order by win DESC limit 10";
+        $stmt = $dbh->prepare($sql); 
         $stmt->execute();
         return $stmt;
     }
@@ -37,7 +37,7 @@
     $idx = 1;
 foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $user) {
     // echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>" . $message['name'] . "：" . $message['message'] . ":" . $message['time'] . "</div></div>";
-  echo '<div class="suuzi">'.$idx.'位 '.$user["username"].' 戦'.$user["count"].'　勝 '.$user["win"].'　負'.$user["lose"].' </div>';
+  echo '<div class="suuzi">'.$idx.'<span>位</span> '.$user["username"].' <span>戦</span>'.$user["count"].'<span> 勝</span>'.$user["win"].'<span> 負</span>'.$user["lose"].' </div>';
   $idx++;
 }
 ?>
