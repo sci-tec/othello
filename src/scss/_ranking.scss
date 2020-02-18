@@ -23,7 +23,7 @@
       }
       .maste-tape{
         position: absolute;
-        top: -0.75em;
+        top: 0.25em;
         background-color: rgba(100,100,100,.3);
         border-left:4px solid #8BC6CA;
         padding: 0.25em 2em;
@@ -35,12 +35,12 @@
         padding: 15px 10px 10px 10px;
       }
     //終了///////
-    .maste-top span{
-      display: -webkit-flex;
-   display: flex;
-   flex-direction: column;
+  //   .maste-top span{
+  //     display: -webkit-flex;
+  //  display: flex;
+  //  flex-direction: column;
   
-    }
+  //   }
     .suuziwaku{
       padding-top: 134px;
       padding-left: 148px;        
@@ -49,5 +49,8 @@
     .suuzi{
       font-size: 20px;
       margin-bottom: 9px;
+    }
+    span{
+      font-size: 16px;
     }
 }
