@@ -20,17 +20,17 @@
       <span class="maste-tape">ランキング</span>
 
       <div class="maste-top">
-        <div class =suuzi>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
-        <span>6</span>
-        <span>7</span>
-        <span>8</span>
-        <span>9</span>
-        <span>10</span>
+        <div class =suuziwaku>
+        <div class="suuzi">1</div>
+        <div class="suuzi">2</div>
+        <div class="suuzi">3</div>
+        <div class="suuzi">4</div>
+        <div class="suuzi">5</div>
+        <div class="suuzi">6</div>
+        <div class="suuzi">7</div>
+        <div class="suuzi">8</div>
+        <div class="suuzi">9</div>
+        <div class="suuzi">10</div>
         </div>
 
         
