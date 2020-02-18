@@ -10,19 +10,25 @@
 
     $username = isset($_POST["username"]) ? $_POST["username"] : "";
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
-    if(checkLogin($username, $password)) {
+
+    $userid = checkLogin($username, $password); 
+    if($userid != null){
         $_SESSION['username'] = $username;
+        $_SESSION['userid'] = $userid;
         echo $username;
         echo $password;
+        echo $userid;
         header('Location: ./roomsearch.php');
     }
 
     function checkLogin($u, $p) {
         require_once("./db.php");
-        $items = getSQLResult("select count(*) from users where username='".$u."' and password='".$p."'");
-        $count = $items -> fetchColumn();
-        echo($count);
-        return $count == 1;
+        $items = getSQLResult("select id from users where username='".$u."' and password='".$p."'");
+        $rows = [];
+        while($row = $items->fetch()){
+            $rows[] = $row;
+        }
+        return $items->rowCount() == 1 ? $rows[0]["id"] : null;
     }
 ?>
 <!DOCTYPE html>

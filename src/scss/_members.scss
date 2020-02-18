@@ -9,9 +9,24 @@
     }
 
     .back{
-        font-size: 20px;
-        background-color: gray;
-        width: 46px;
+        // font-size: 20px;
+        // background-color: gray;
+        // width: 46px;
+        box-shadow: 3px 4px 0px 0px #899599;
+        background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+        background-color: #ededed;
+        border-radius: 15px;
+        border: 1px solid #d6bcd6;
+        display: inline-block;
+        cursor: pointer;
+        color: #3a8a9e;
+        /* font-family:Arial; */
+        font-size: 28px;
+        padding: 3px 8px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #e1e2ed;
+        margin-top: 20px;
+  
     }
     .member{
 
@@ -41,3 +56,182 @@
         }
     }
 }
+
+@media screen and (max-width: 700px) {
+    $width: 100%;
+    #members{
+        h1{
+            font-size: $width;
+        }
+        
+        .back{
+            font-size: $width;
+        }
+        .member{
+            .rink{
+                font-size: $width;
+            }
+            p{
+                font-size: $width;
+            }
+        
+            .funny{
+                font-size: $width;
+            }
+        
+            .funnymin{
+                font-size: $width;
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    $width: 80%;
+    #members{
+        h1{
+            font-size: $width;
+        }
+    
+        .back{
+            font-size: $width;
+        }
+        .member{
+            .rink{
+                font-size: $width;
+            }
+            p{
+                font-size: $width;
+            }
+    
+            .funny{
+                font-size: $width;
+            }
+    
+            .funnymin{
+                font-size: $width;
+            }
+        }
+    }
+
+}
+
+
+// @media screen and (min-width: 260px) {
+//     $width: 70%;
+//     #members{
+//         h1{
+//             font-size: $width;
+//         }
+    
+//         .back{
+//             font-size: $width;
+//         }
+//         .member{
+//             .rink{
+//                 font-size: $width;
+//             }
+//             p{
+//                 font-size: $width;
+//             }
+    
+//             .funny{
+//                 font-size: $width;
+//             }
+    
+//             .funnymin{
+//                 font-size: $width;
+//             }
+//         }
+//     }
+// }
+
+@media screen and (max-width: 400px) {
+    $width: 76%;
+    #members{
+        h1{
+            font-size: $width;
+        }
+    
+        .back{
+            font-size: $width;
+        }
+        .member{
+            .rink{
+                font-size: $width;
+            }
+            p{
+                font-size: $width;
+            }
+    
+            .funny{
+                font-size: $width;
+            }
+    
+            .funnymin{
+                font-size: $width;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 374px) {
+    $width: 74%;
+    #members{
+        h1{
+            font-size: $width;
+        }
+    
+        .back{
+            font-size: $width;
+        }
+        .member{
+            .rink{
+                font-size: $width;
+            }
+            p{
+                font-size: $width;
+            }
+    
+            .funny{
+                font-size: $width;
+            }
+    
+            .funnymin{
+                font-size: $width;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 360px) {
+    $width: 50%;
+    #members{
+        h1{
+            font-size: $width;
+        }
+    
+        .back{
+            font-size: $width;
+        }
+        .member{
+            .rink{
+                font-size: $width;
+            }
+            p{
+                font-size: $width;
+            }
+    
+            .funny{
+                font-size: $width;
+            }
+    
+            .funnymin{
+                font-size: $width;
+            }
+        }
+    }
+}
+
+

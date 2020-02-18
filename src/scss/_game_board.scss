@@ -6,7 +6,7 @@
       height: 60px;
       display: flex;
       flex-wrap: wrap;
-      .grid {
+      .cell {
         box-sizing: border-box;
         width: 60px;
         height: 60px;
@@ -139,19 +139,19 @@
         }
       }
       @media screen and (max-height: 590px) {
-        .grid {
+        .cell {
           width: 50px;
           height: 50px;
         }
       }
       @media screen and (max-width: 700px) {
-        .grid {
+        .cell {
           width: 50px;
           height: 50px;
         }
       }
       @media screen and (max-width: 410px) {
-        .grid {
+        .cell {
           width: 40px;
           height: 40px;
         }

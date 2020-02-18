@@ -3,7 +3,7 @@ var http = require('http');
 // var querystring = require('querystring');
 var url = require('url');
 var Pusher = require('pusher');
- 
+
 var server = http.createServer(function(req, res) {
 	if (req.url.indexOf('/sender?') == 0 && req.method === 'GET') {
 	    var data = url.parse(req.url,true).query;
@@ -23,8 +23,8 @@ function send(data) {
         cluster: 'ap3',
         encrypted: true
     });
-    
-    pusher.trigger(data["tableId"], data["type"], data);
+
+    pusher.trigger(data["tableId"], "plot", data);
 }
 
 // ポート指定でlocalhostを起動
