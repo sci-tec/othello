@@ -5,9 +5,9 @@
     background-repeat: no-repeat;
     background-size: contain;
     width:100%;                              /* 横幅のサイズを指定    */
-    height:400px;  
+    height:553px;  
     background-position:center bottom; 
-    
+    position: relative;
   
   }
   
@@ -32,21 +32,22 @@
         color: #454545;
         padding: 15px 10px 10px 10px;
       }
-      .text{
-        padding: 10px 23px;
-        border: 2px solid #eee;
-        border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
-        margin-bottom: 15px;
-        font-size: 18px;
-        margin-top: 50px;
-        font-weight: bold;
-        background-color: rgba(231, 114, 114, 0.3);
-      }
     //終了///////
     .maste-top span{
       display: -webkit-flex;
    display: flex;
    flex-direction: column;
   
+    }
+    .suuziwaku{
+         position: absolute;
+         top: 134px;
+         left: 502px;
+        
+        
+    }
+    .suuzi{
+      font-size: 20px;
+      margin-bottom: 9px;
     }
 }
