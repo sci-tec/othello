@@ -20,6 +20,7 @@
       <span class="maste-tape">ランキング</span>
 
       <div class="maste-top">
+        <div class =suuzi>
         <span>1</span>
         <span>2</span>
         <span>3</span>
@@ -30,11 +31,12 @@
         <span>8</span>
         <span>9</span>
         <span>10</span>
+        </div>
 
         
         
          
-        </div>
+       </div>
 </div>
          
      
