@@ -1,8 +1,8 @@
 const Model = (() => {
   const Data = {
-    tableId: strDis(getUrlVars().tableId), // getUrlVars().tableId
+    tableId: strDis(session_roomId), // getUrlVars().tableId
     myName: strDis(session_userName), // getUrlVars().player
-    myColor: parseInt(getUrlVars().color), // parseInt(getUrlVars().color)
+    myColor: parseInt(session_myColor), // parseInt(getUrlVars().color)
     opponentName: "",
     y_Axis: 8,
     x_Axis: 8,
@@ -365,19 +365,21 @@ const Controller = ((model, view) => {
 
   const addEvents = () => {
     $(document).on("click", ".cell", function() {
-      if (parseInt(data[1].currentColor) === data[0].myColor &&
-         this.children[0] !== undefined &&
-         this.children[0].className === `hint${data[0].myColor}`) {
+      if (
+        parseInt(data[1].currentColor) === data[0].myColor &&
+        this.children[0] !== undefined &&
+        this.children[0].className === `hint${data[0].myColor}`
+      ) {
         var y = $(this).data("y");
         var x = $(this).data("x");
-          console.log(data[1].cells[y][x]);
-          senderToPusher(x, y, data[1].currentColor);
+        console.log(data[1].cells[y][x]);
+        senderToPusher(x, y, data[1].currentColor);
         if (!data[1].hint && data[1].result === "") {
           senderToPusher(x, y, data[1].currentColor);
         }
       }
     });
-  }
+  };
 
   const postResult = (
     postData = { winnerid: session_userId, loserid: session_opponentId }
