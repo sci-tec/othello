@@ -3,8 +3,8 @@
     session_start();
     $username = $_SESSION['username'];
     $userid = $_SESSION['userid'];
-    // $_SESSION['roomid'] = $_POST['roomid'];
-    // $_SESSION['mycolor'] = $_POST['mycolor'];
+    $_SESSION['roomid'] = preg_replace('/[^0-9a-zA-Z]/', '', $_GET['roomid']);
+    $_SESSION['mycolor'] = preg_replace('/[^0-9a-zA-Z]/', '', $_GET['mycolor']);
     $roomid = $_SESSION["roomid"];
 
     if($username == "") {
@@ -59,8 +59,9 @@
     function select() {
         require_once("./db.php");
         $dbh = getDBH();
-        // $sql = "select * FROM message where roomid = '".$roomid."'";
-        $sql = "select * FROM message where roomid = '2'";
+        $roomid = $_SESSION["roomid"];
+        $sql = "select * FROM message where roomid = '".$roomid."'";
+        // $sql = "select * FROM message where roomid = '2'";
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
         return $stmt;
