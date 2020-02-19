@@ -50,9 +50,9 @@
     foreach ($items->fetchAll(PDO::FETCH_ASSOC) as $rooms) {
         $item = '<div class="item row">'
         .'<div class="room2">'.$rooms['name'].'</div>'
-        .'<form method="post" action="game.php"><input type="hidden" name="mycolor" value="0"><input type="hidden" name="roomid" value='.$rooms['name'].'><input class="myButton6 black" type="submit" value="black"></form>'
-        .'<form method="post" action="game.php"><input type="hidden" name="mycolor" value="1"><input type="hidden" name="roomid" value='.$rooms['name'].'><input class="myButton6 white" type="submit" value="white"></form>'
-        .'<form method="post" action="game.php"><input type="hidden" name="mycolor" value="2"><input type="hidden" name="roomid" value='.$rooms['name'].'><input class="myButton6 watching" type="submit" value="watching"></form>'
+        .'<form method="post" action="game.php"><input type="hidden" name="mycolor" value="0"><input type="hidden" name="roomname" value='.$rooms['name'].'><input type="hidden" name="roomid" value='.$rooms['id'].'><input class="myButton6 black" type="submit" value="black"></form>'
+        .'<form method="post" action="game.php"><input type="hidden" name="mycolor" value="1"><input type="hidden" name="roomname" value='.$rooms['name'].'><input type="hidden" name="roomid" value='.$rooms['id'].'><input class="myButton6 white" type="submit" value="white"></form>'
+        .'<form method="post" action="game.php"><input type="hidden" name="mycolor" value="2"><input type="hidden" name="roomname" value='.$rooms['name'].'><input type="hidden" name="roomid" value='.$rooms['id'].'><input class="myButton6 watching" type="submit" value="watching"></form>'
         .'</div>';
         echo $item;
     }
