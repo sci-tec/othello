@@ -275,9 +275,11 @@ const Controller = ((model, view) => {
       alert("tableIdが指定されてません。\ntableIdを指定してください。");
     } else {
       initPusher();
-      sendName();
-      view.showNames(data[0].myName, data[0].myColor);
-      view.showNames(data[0].opponentName, data[1].opponentColor());
+      if (data[0].myColor !== 2) {
+        sendName();
+        view.showNames(data[0].myName, data[0].myColor);
+        view.showNames(data[0].opponentName, data[1].opponentColor());
+      }
       refresh();
     }
   };
@@ -412,12 +414,15 @@ const Controller = ((model, view) => {
   };
   // 処理
   gameStart();
-  addEvents();
-
-  dom.retry.click(function(e) {
-    let url = `./sender.php?tableId=${data[0].tableId}&type=restart`;
-    $.get(url, function(_, status) {
-      if (status != "success") console.log("送信エラー");
+  if (data[0].myColor !== 2) {
+    addEvents();
+    dom.retry.click(function(e) {
+      let url = `./sender.php?tableId=${data[0].tableId}&type=restart`;
+      $.get(url, function(_, status) {
+        if (status != "success") console.log("送信エラー");
+      });
     });
-  });
+  } else {
+    refresh();
+  }
 })(Model, View);
