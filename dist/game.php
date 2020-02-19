@@ -56,7 +56,7 @@ if ($username == "") {
         </div>
     </div>
     <div class="chat">
-        <iframe id="inlineFrameExample" title="Inline Frame Example" width="100%" height="100%" src="chat.php">
+        <iframe id="inlineFrameExample" title="Inline Frame Example" width="100%" height="100%" src="chat.php?roomid=<?php echo $roomid; ?>&mycolor=<?php echo $mycolor; ?>">
         </iframe>
     </div>
     <div class="info">
@@ -87,7 +87,7 @@ if ($username == "") {
         const session_myColor = "<?php echo $mycolor; ?>";
     </script>
     <script src="js/app.js"></script>
-    <script src="js/othello2.js"></script>
+    <script src="js/othello.js"></script>
 </body>
 
 </html>
