@@ -14,6 +14,8 @@
   </head>
 <body id="ranking">
 
+<a href="index.php" class="circle_spread_btn">home</a>
+
 <div class="maste-box">
 
 
