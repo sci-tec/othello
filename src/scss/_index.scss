@@ -53,7 +53,7 @@
       padding: 3px 8px;
       text-decoration: none;
       text-shadow: 0px 1px 0px #e1e2ed;
-      margin-top: 20px;
+      margin: 20px;
     }
     .btn:hover {
       background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
@@ -116,6 +116,7 @@
     
     p {
       margin-top: 100px;
+      margin-bottom: 35px;
       font-size: 100px;
     }
     .waku {
@@ -187,6 +188,15 @@
       }
     }
   }
+  .form_area {
+    padding: 20px;
+    font-weight: bold;
+    box-sizing: border-box;
+    border: solid 3px white;
+    border-width: 3px;
+    margin: auto;
+    display: table;
+  }
 
   @media screen and (min-width: 750px) {
     #index {
@@ -223,7 +233,6 @@
       }
     }
   }
-
   @media screen and (max-width:479px) {
     #index {
       position: relative;
@@ -233,4 +242,25 @@
       }
     }
   }
-  
+
+  @media screen and (max-width:414px){
+    #index {
+      position: relative;
+      .waku {
+        font-size: 21px;
+    margin: 4px;
+    border: solid 2px;
+      }
+  }
+}
+
+  @media screen and (max-width:375px){
+    #index {
+      position: relative;
+      .waku {
+        font-size: 18px;
+    margin: 3px;
+    border: solid 2px;
+      }
+    }
+  }

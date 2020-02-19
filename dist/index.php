@@ -48,7 +48,7 @@
     <p id="title" align="center"><font color ="white">Horoaki othello</font></p>
 
 <div class="login">
-    <form method="post" action="./index.php">
+    <form method="post" action="./index.php" class="form_area">
     <table align="center">
         <tr>
             <td><font color ="white">name</font></td>
@@ -67,8 +67,10 @@
          <img src ="./img/qrcode.png">
         </div>
         <div align="center">
-        <a href="./members.php" class="btn">members</a>
+            <a href="./members.php" class="btn">members</a>
+            <a href="./ranking.php" class="btn">Ranking</a>
         </div>   
+        
 </div>
 
 <div class="register">
