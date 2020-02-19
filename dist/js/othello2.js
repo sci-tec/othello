@@ -377,6 +377,7 @@ const Controller = ((model, view) => {
         }
       }
     });
+  }
 
   const postResult = (
     postData = { winnerid: session_userId, loserid: session_opponentId }
