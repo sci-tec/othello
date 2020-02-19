@@ -3,9 +3,14 @@
 session_start();
 $username = $_SESSION['username'];
 $userid = $_SESSION['userid'];
+$_SESSION['roomid'] = $_POST['roomid'];
+$_SESSION['mycolor'] = $_POST['mycolor'];
+$roomid = $_SESSION['roomid'];
+$mycolor = $_SESSION['mycolor'];
 //$roomid = $_SESSION['roomid'];
-$roomid = "table001";
+// $roomid = "table001";
 $opponentid = "2";
+
 $opponentname = "tanaka";
 if ($username == "") {
     header('Location: ./index.php');
@@ -42,9 +47,6 @@ if ($username == "") {
         // });
     </script>
     <div class="board"></div>
-    <!-- <div class="result_board">
-        <p>あなたの勝ちです！</p>
-    </div> -->
     <div class="result">
         <div class="win">
             <p1>YOURWINEヽ(ﾟ∀｡)ﾉｳｪィ</p1>
@@ -60,12 +62,12 @@ if ($username == "") {
     <div class="info">
         <div class="player0">
             <div class="color black"></div>
-            <p>player0</p>
+            <p>player</p>
             <div class="pieces_num">×2</div>
         </div>
         <div class="player1">
             <div class="color white"></div>
-            <p>player1</p>
+            <p>player</p>
             <div class="pieces_num">×2</div>
         </div>
         <div class="time_limit"></div>
@@ -82,9 +84,10 @@ if ($username == "") {
         const session_opponentId = <?php echo $opponentid; ?>;
         const session_opponentName = "<?php echo $opponentname; ?>";
         const session_roomId = "<?php echo $roomid; ?>";
+        const session_myColor = "<?php echo $mycolor; ?>";
     </script>
     <script src="js/app.js"></script>
-    <script src="js/othello.js"></script>
+    <script src="js/othello2.js"></script>
 </body>
 
 </html>
