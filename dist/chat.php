@@ -3,7 +3,7 @@
     session_start();
     $username = $_SESSION['username'];
     $userid = $_SESSION['userid'];
-    $roomid = $_SESSION["roomid"];
+    //$roomid = $_SESSION["roomid"];
 
     if($username == "") {
         header('Location: ./index.php');
