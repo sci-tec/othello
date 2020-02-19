@@ -302,7 +302,7 @@ const Controller = ((model, view) => {
     var cells = data[1].cells,
       row,
       cell;
-    console.log(cells, model.getData()[1].cell);
+    // console.log(cells, model.getData()[1].cell);
     for (var y = 0; y < data[0].y_Axis; y++) {
       row = dom.row(y);
       for (var x = 0; x < data[0].x_Axis; x++) {
