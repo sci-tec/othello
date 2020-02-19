@@ -1,9 +1,7 @@
 $(function() {
   $("body").append('<div id="navi"></div>');
   $("#navi").append(
-    '<a href="./index.php">TOP</a>',
-    '<a href="./members.php">MEMBER</a>',
-    '<a href="./sample/index.php">SESSION sample</a>'
+    '<a href="./index.php">TOP</a>'
   );
 });
 
