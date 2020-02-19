@@ -42,17 +42,18 @@
                 <a href="#" id = "search" class="search">search</a> 
             </div>
             <div class="roomContainer">
-            <?php // DBからデータ(投稿内容)を取得 
+
+<?php // DBからデータ(投稿内容)を取得 
     //$stmt = select(); 
     require_once("./db.php");
     $items = getSQLResult("select * from rooms");
     foreach ($items->fetchAll(PDO::FETCH_ASSOC) as $rooms) {
-        $item = '<div class="item row">'  
-              . '<div class="room2">'.$rooms['name'].'</div>'
-              . '<a href="./game.php?tableId='.$rooms['name'].'&player='.$userid.'&color=0" class="myButton6 black">black</a>'
-              . '<a href="./game.php?tableId='.$rooms['name'].'&player='.$userid.'&color=1" class="myButton6 white">white</a>'
-              . '<a href="./game.php?tableId='.$rooms['name'].'&player='.$userid.'&color=2" class="myButton6 watching">watching</a>'
-          . '</div>';
+        $item = '<div class="item row">'
+        .'<div class="room2">'.$rooms['name'].'</div>'
+        .'<form method="post" action="game.php"><input type="hidden" name="mycolor" value="0"><input type="hidden" name="roomid" value='.$rooms['name'].'><input class="myButton6 black" type="submit" value="black"></form>'
+        .'<form method="post" action="game.php"><input type="hidden" name="mycolor" value="1"><input type="hidden" name="roomid" value='.$rooms['name'].'><input class="myButton6 white" type="submit" value="white"></form>'
+        .'<form method="post" action="game.php"><input type="hidden" name="mycolor" value="2"><input type="hidden" name="roomid" value='.$rooms['name'].'><input class="myButton6 watching" type="submit" value="watching"></form>'
+        .'</div>';
         echo $item;
     }
     // 投稿内容を登録
