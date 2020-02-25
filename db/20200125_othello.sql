@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 18, 2020 at 06:25 AM
+-- Generation Time: Feb 25, 2020 at 04:47 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -51,6 +51,15 @@ CREATE TABLE `message` (
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`id`, `roomid`, `userid`, `message`, `time`, `name`) VALUES
+(1, 9, 12, '1234', '2020-02-25 04:20:00', 'hajime'),
+(2, 9, 12, '6886', '2020-02-25 04:20:02', 'hajime'),
+(3, 10, 12, 'r6756756756', '2020-02-25 04:20:25', 'hajime');
+
 -- --------------------------------------------------------
 
 --
@@ -69,10 +78,9 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `members`) VALUES
-(8, 'table002', ''),
-(10, 'a', ''),
-(11, 'b', ''),
-(12, '1234', '');
+(11, 'room01', ''),
+(12, 'room02', ''),
+(13, 'room03', '');
 
 -- --------------------------------------------------------
 
@@ -96,7 +104,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `win`, `lose`, `count`) VALUES
 (1, 'kouhei', '123', 0, 0, 0),
-(2, 'hiroaki', '123', 0, 0, 0),
+(2, 'hiroaki', '123', 0, 1, 1),
 (3, 'can', '123', 0, 0, 0),
 (4, 'shoya', '123', 0, 0, 0),
 (5, 'aren', '123', 0, 0, 0),
@@ -106,7 +114,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `win`, `lose`, `count`) VALUE
 (9, 'junki', '123', 0, 0, 0),
 (10, 'ryuji', '123', 0, 0, 0),
 (11, 'reo', '123', 0, 0, 0),
-(12, 'hajime', '123', 0, 0, 0);
+(12, 'hajime', '123', 1, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -150,13 +158,13 @@ ALTER TABLE `history`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` tinyint(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` tinyint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
