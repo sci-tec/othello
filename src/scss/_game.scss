@@ -107,18 +107,18 @@
     }
   }
 }
-@media screen and (max-width: 900px) {
-  #new_game {
-    .chat {
-      margin: 5px;
-      height: 98%;
-    }
-    .info {
-      margin: 5px;
-    }
-  }
-}
-@media screen and (max-width: 700px) {
+// @media screen and (max-width: 900px) {
+//   #new_game {
+//     .chat {
+//       margin: 5px;
+//       height: 98%;
+//     }
+//     .info {
+//       margin: 5px;
+//     }
+//   }
+// }
+@media screen and (max-width: 1000px) {
   #new_game {
     .board {
       position: absolute;
@@ -143,7 +143,7 @@
       left: 50%;
       transform: translate(-50%);
       width: 98vw;
-      height: 27%;
+      height: 22%;
     }
     .result {
       .win {
@@ -172,6 +172,12 @@
       width: 320px;
       height: 320px;
       margin-top: 87px;
+    }
+    .info {
+      position: absolute;
+      left: 50%;
+      width: 98vw;
+      height: 15%;
     }
   }
 }
