@@ -344,17 +344,26 @@ const Controller = ((model, view) => {
 
   const initPusher = () => {
     pusher.subscribe(data[0].tableId).bind("plot", function(data) {
-      model.flip(strDis(data.x), strDis(data.y), strDis(data.color));
-      refresh();
-      canClick = true;
+      if (
+        model.getData()[1].cells[data.y][data.x].hint !== "" &&
+        model.getData()[1].cells[data.y][data.x].contents === ""
+      ) {
+        model.flip(strDis(data.x), strDis(data.y), strDis(data.color));
+        refresh();
+        canClick = true;
+      }
     });
     pusher.subscribe(data[0].tableId).bind("finish", function(data) {
-      dom.cover.css("display", "block");
-      canClick = true;
+      if (model.getData()[1].result !== "") {
+        dom.cover.css("display", "block");
+        canClick = true;
+      }
     });
     pusher.subscribe(data[0].tableId).bind("restart", function(data) {
-      reset();
-      canClick = true;
+      if (model.getData()[1].result !== "") {
+        reset();
+        canClick = true;
+      }
     });
     pusher.subscribe(data[0].tableId).bind("name", function(data) {
       if (model.getData()[0].opponentName === "") {
@@ -366,7 +375,6 @@ const Controller = ((model, view) => {
   };
 
   const senderToPusher = (x, y, color) => {
-    // if (!x || !y || !color) return;
     let url = `./sender.php?tableId=${data[0].tableId}&type=plot&x=${x}&y=${y}&color=${color}`;
     canClick = false;
     $.get(url, function(_, status) {
