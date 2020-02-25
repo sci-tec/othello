@@ -18,11 +18,11 @@
 <title>チャット</title>
 <link rel="stylesheet"  href="./css/style.css">
 </head>
-<body id="game_chat">            
+<body id="game_chat">
     <!-- header 表示固定表示 -->
     <div class="header">
         <p class="chat-str">チャット</p>
-        <form method="post" action="chat.php">
+        <form method="post" action="chat.php?roomid=<?php echo $roomid; ?>&mycolor=<?php echo $mycolor; ?>">
             <div class="font">
                 <input type="hidden" name="name" value="<?php echo $username; ?>">
                 <input type="hidden" name="userid" value="<?php echo $userid; ?>">
@@ -30,7 +30,6 @@
                 <div class="right"><input type="text" name="message"　size="15" placeholder="メッセージ入力   Enterを押すと送信"></div>
                 <div class ="abcd"> <input class="abc" type="submit" name="send" value="送信" > </div>
             </div>
-            　
         </form>
         <!-- <p class="font">チャット履歴</p> -->
     </div>
@@ -71,7 +70,6 @@
     function select_new() {
         require_once("./db.php");
         $dbh = getDBH();
-        // $sql = "SELECT * FROM message ORDER BY time desc limit 1";
         $sql = "SELECT * FROM message ORDER BY id desc limit 1";
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
@@ -80,6 +78,9 @@
     // DBから投稿内容を登録
     function insert() {
         require_once("./db.php");
+        $userid = $_SESSION["userid"];
+        $roomid = preg_replace('/[^0-9a-zA-Z]/', '', $_SESSION['roomid']);
+        $username = $_SESSION["username"];
         $message = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['message']);
         $sql = "insert INTO message ( roomid, userid, message, name) VALUES ('".$roomid."', '".$userid."', '".$message."', '".$username."')";
         // echo $sql; exit;
