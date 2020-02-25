@@ -1,8 +1,4 @@
-/**
- * color:2 の処理
- * _game_info.scssレスポンシブ化
- *
- */
+var canClick = true;
 
 const Model = (() => {
   const Data = {
@@ -83,7 +79,6 @@ const Model = (() => {
     color === Data.black ? Data.white : Data.black;
 
   const flipByDirection = (x, y, color, direction) => {
-    // console.log(x, y, color, direction);
     const dirY = direction[0];
     const dirX = direction[1];
     var chainY, chainX, arr;
@@ -100,7 +95,6 @@ const Model = (() => {
       chainY += dirY;
       chainX += dirX;
     }
-    // console.log(arr);
     if (
       arr.length &&
       arr[0].contents === getOpponentColor() &&
@@ -120,7 +114,6 @@ const Model = (() => {
       }
       change.forEach(el => (el.contents = color));
     }
-    // console.log(change);
   };
 
   const refreshHint = (color = data.currentColor) => {
@@ -171,6 +164,10 @@ const Model = (() => {
         ? (data.result = "win")
         : (data.result = "lose");
     } else if (black == white) data.result = "draw";
+
+    if (Data.myColor === 2) {
+      data.result = "ShowResult";
+    }
   };
 
   createInitialData();
@@ -207,7 +204,6 @@ const Model = (() => {
       changePlayer(data.currentColor);
     },
     resetData: () => {
-      // console.log(Data.black);
       data = {
         cells: [],
         currentColor: Data.black,
@@ -242,6 +238,8 @@ const View = (() => {
     currentPlayer: "current_player",
     win: $(".win"),
     lose: $(".lose"),
+    draw: $(".draw"),
+    ShowResult: $(".ShowResult"),
     cover: $(".cover"),
     retry: $(".retry")
   };
@@ -249,7 +247,6 @@ const View = (() => {
   return {
     dom: () => DomString,
     showNames: (name, color) => {
-      // console.log(color);
       DomString[`player${color}`].children()[1].textContent = name;
     },
     viewCurrentPlayer: color => {
@@ -262,10 +259,17 @@ const View = (() => {
       DomString.player1.children()[2].textContent = `×${white}`;
     },
     gameResult: (result, black, white) => {
-      result !== "draw"
-        ? DomString[`${result}`].css("display", "block")
-        : console.log("This game is a draw...");
-      console.log(`black:${black} white:${white}`);
+      if (result === "win" || result === "lose") {
+        DomString[`${result}`].css("display", "block");
+      } else if (result === "ShowResult") {
+        var gameResult = black > white ? "Winner: Black" : "Winner: White";
+        DomString[
+          `${result}`
+        ][0].children[0].textContent = `ShowResult\n${gameResult}\nBlack:${black} White:${white}`;
+        DomString[`${result}`].css("display", "block");
+      } else {
+        DomString[`${result}`].css("display", "block");
+      }
       DomString.player0.removeClass(DomString.currentPlayer);
       DomString.player1.removeClass(DomString.currentPlayer);
     }
@@ -278,20 +282,15 @@ const Controller = ((model, view) => {
 
   const gameStart = () => {
     dom.board.html("");
-    // console.log(data[0].myColor);
     if (!data[0].tableId) {
       alert("tableIdが指定されてません。\ntableIdを指定してください。");
     } else {
       initPusher();
-      console.log(data[0].myColor);
       if (data[0].myColor !== 2) {
         sendName();
         view.showNames(data[0].myName, data[0].myColor);
         view.showNames(data[0].opponentName, data[1].opponentColor());
       }
-      // sendName();
-      // view.showNames(data[0].myName, data[0].myColor);
-      // view.showNames(data[0].opponentName, data[1].opponentColor());
       refresh();
     }
   };
@@ -302,7 +301,6 @@ const Controller = ((model, view) => {
     var cells = data[1].cells,
       row,
       cell;
-    // console.log(cells, model.getData()[1].cell);
     for (var y = 0; y < data[0].y_Axis; y++) {
       row = dom.row(y);
       for (var x = 0; x < data[0].x_Axis; x++) {
@@ -346,32 +344,31 @@ const Controller = ((model, view) => {
 
   const initPusher = () => {
     pusher.subscribe(data[0].tableId).bind("plot", function(data) {
-      console.log(data);
       model.flip(strDis(data.x), strDis(data.y), strDis(data.color));
       refresh();
+      canClick = true;
     });
     pusher.subscribe(data[0].tableId).bind("finish", function(data) {
-      console.log(data);
       dom.cover.css("display", "block");
+      canClick = true;
     });
     pusher.subscribe(data[0].tableId).bind("restart", function(data) {
-      console.log(data);
-      // restart処理
       reset();
+      canClick = true;
     });
     pusher.subscribe(data[0].tableId).bind("name", function(data) {
-      console.log(data);
       if (model.getData()[0].opponentName === "") {
         model.getData()[0].opponentName = data.name;
         sendName();
+        canClick = true;
       }
     });
   };
 
   const senderToPusher = (x, y, color) => {
-    // console.log(x, y, color);
-    if (!x || !y || !color) return;
+    // if (!x || !y || !color) return;
     let url = `./sender.php?tableId=${data[0].tableId}&type=plot&x=${x}&y=${y}&color=${color}`;
+    canClick = false;
     $.get(url, function(_, status) {
       if (status != "success") console.log("送信エラー");
     });
@@ -380,6 +377,7 @@ const Controller = ((model, view) => {
   const addEvents = () => {
     $(document).on("click", ".cell", function() {
       if (
+        canClick &&
         parseInt(data[1].currentColor) === data[0].myColor &&
         this.children[0] !== undefined &&
         this.children[0].className === `hint${data[0].myColor}`
@@ -387,10 +385,13 @@ const Controller = ((model, view) => {
         var y = $(this).data("y");
         var x = $(this).data("x");
         senderToPusher(x, y, data[1].currentColor);
-        if (!data[1].hint && data[1].result === "") {
-          senderToPusher(x, y, data[1].currentColor);
-        }
+        // if (!data[1].hint && data[1].result === "") {
+        //   senderToPusher(x, y, data[1].currentColor);
+        // }
       }
+    });
+    $(document).on("dblclick", ".cell", function() {
+      return false;
     });
   };
 
@@ -398,9 +399,7 @@ const Controller = ((model, view) => {
     postData = { winnerid: session_userId, loserid: session_opponentId }
   ) => {
     $.post("postResult.php", postData, function(result) {
-      // console.log(postData);
       let url = `./sender.php?tableId=${data[0].tableId}&type=finish`;
-      // console.log(url);
       $.get(url, function(_, status) {
         if (status != "success") console.log("送信エラー");
       });
@@ -421,7 +420,6 @@ const Controller = ((model, view) => {
       if (status != "success") console.log("送信エラー");
     });
   };
-  // 処理
 
   gameStart();
   if (data[0].myColor !== 2) {
@@ -435,11 +433,4 @@ const Controller = ((model, view) => {
   } else {
     refresh();
   }
-  // addEvents();
-  // dom.retry.click(function(e) {
-  //   let url = `./sender.php?tableId=${data[0].tableId}&type=restart`;
-  //   $.get(url, function(_, status) {
-  //     if (status != "success") console.log("送信エラー");
-  //   });
-  // });
 })(Model, View);
