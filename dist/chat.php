@@ -3,8 +3,8 @@
     session_start();
     $username = $_SESSION['username'];
     $userid = $_SESSION['userid'];
-    $_SESSION['roomid'] = preg_replace('/[^0-9a-zA-Z]/', '', $_GET['roomid']);
-    $_SESSION['mycolor'] = preg_replace('/[^0-9a-zA-Z]/', '', $_GET['mycolor']);
+    $_SESSION['roomid'] = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['roomid']);
+    $_SESSION['mycolor'] = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['mycolor']);
     $roomid = $_SESSION["roomid"];
 
     if($username == "") {
@@ -22,10 +22,12 @@
     <!-- header 表示固定表示 -->
     <div class="header">
         <p class="chat-str">チャット</p>
-        <form method="post" action="chat.php?roomid=<?php echo $roomid; ?>&mycolor=<?php echo $mycolor; ?>">
+        <form method="post" action="chat.php">
             <div class="font">
                 <input type="hidden" name="name" value="<?php echo $username; ?>">
                 <input type="hidden" name="userid" value="<?php echo $userid; ?>">
+                <input type="hidden" name="roomid" value="<?php echo $roomid; ?>">
+                <input type="hidden" name="mycolor" value="<?php echo $mycolor; ?>">
                 <div><?php echo $username; ?></div>
                 <div class="right"><input type="text" name="message"　size="15" placeholder="メッセージ入力   Enterを押すと送信"></div>
                 <div class ="abcd"> <input class="abc" type="submit" name="send" value="送信" > </div>
