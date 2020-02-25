@@ -3,8 +3,12 @@
     session_start();
     $username = $_SESSION['username'];
     $userid = $_SESSION['userid'];
-    $_SESSION['roomid'] = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['roomid']);
-    $_SESSION['mycolor'] = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['mycolor']);
+    if(isset($_GET['roomid'])) {
+        $_SESSION['roomid'] = preg_replace('/[^0-9a-zA-Z]/', '', $_GET['roomid']);
+    }
+    if(isset($_GET['mycolor'])) {
+        $_SESSION['mycolor'] = preg_replace('/[^0-9a-zA-Z]/', '', $_GET['mycolor']);
+    }
     $roomid = $_SESSION["roomid"];
 
     if($username == "") {
