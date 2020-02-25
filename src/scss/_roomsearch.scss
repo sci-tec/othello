@@ -177,14 +177,39 @@
       color:#D83526;
       font-size: 300%;
       text-align:center;
-      margin-left: 120px;
+      margin-left: 15px;
     }
-    .row{
-      margin-left: 120px;
-    }
-
+    //.row{
+     // margin-left: 120px;
+   // }
   }
-
-  @media screen and (max-width: 480px) {
+}
+@media screen and (max-width:375px){
+  #roomsearch_3 {
+    position: relative;
+    .row {
+      margin-left: 142px;
+    }
+  }
+}
+@media screen and (max-width:375px){
+  #roomsearch_3 {
+    position: relative;
+    .roomContainer {
+      padding-right: 5px;
+    }
+    .room{
+      width:230px;
+    }
+    .room1{
+      width:230px;
+    }
+    .room2 {
+      width: 155px;
+    }
+    .myButton6{
+      padding: 8px;
+      font-size: 14px;
+    }
   }
 }
