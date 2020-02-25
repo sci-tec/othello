@@ -4,13 +4,13 @@ session_start();
 $username = $_SESSION['username'];
 $userid = $_SESSION['userid'];
 $_SESSION['roomid'] = $_POST['roomid'];
+$_SESSION['roomname'] = $_POST['roomname'];
 $_SESSION['mycolor'] = $_POST['mycolor'];
 $roomid = $_SESSION['roomid'];
 $mycolor = $_SESSION['mycolor'];
-//$roomid = $_SESSION['roomid'];
-// $roomid = "table001";
-$opponentid = "2";
+$roomname = $_SESSION['roomname'];
 
+$opponentid = "2";
 $opponentname = "tanaka";
 if ($username == "") {
     header('Location: ./index.php');
@@ -32,20 +32,6 @@ if ($username == "") {
 
 <body id="new_game">
     <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
-    <script>
-        // // Enable pusher logging - don't include this in production
-        // Pusher.logToConsole = true;
-
-        // var pusher = new Pusher('ac2b1faa8b9a8094de41', {
-        //     cluster: 'ap3',
-        //     forceTLS: true
-        // });
-
-        // var channel = pusher.subscribe('my-channel');
-        // channel.bind('my-event', function(data) {
-        //     alert(JSON.stringify(data));
-        // });
-    </script>
     <div class="board"></div>
     <div class="result">
         <div class="win">
@@ -56,8 +42,7 @@ if ($username == "") {
         </div>
     </div>
     <div class="chat">
-        <iframe id="inlineFrameExample" title="Inline Frame Example" width="100%" height="100%" src="chat.php?roomid=<?php echo $roomid; ?>&mycolor=<?php echo $mycolor; ?>">
-        </iframe>
+        <iframe id="inlineFrameExample" title="Inline Frame Example" width="100%" height="100%" src="chat.php?roomid=<?php echo $roomid; ?>&mycolor=<?php echo $mycolor; ?>"></iframe>
     </div>
     <div class="info">
         <div class="player0">

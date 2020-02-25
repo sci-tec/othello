@@ -30,6 +30,7 @@
                 <div class="right"><input type="text" name="message"　size="15" placeholder="メッセージ入力   Enterを押すと送信"></div>
                 <div class ="abcd"> <input class="abc" type="submit" name="send" value="送信" > </div>
             </div>
+            　
         </form>
         <!-- <p class="font">チャット履歴</p> -->
     </div>
