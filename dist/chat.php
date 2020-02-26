@@ -21,6 +21,8 @@
 <meta charset="UTF-8">
 <title>チャット</title>
 <link rel="stylesheet"  href="./css/style.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://js.pusher.com/5.0/pusher.min.js"></script>
 </head>
 <body id="game_chat">
     <!-- header 表示固定表示 -->
@@ -92,9 +94,23 @@
         $sql = "insert INTO message ( roomid, userid, message, name) VALUES ('".$roomid."', '".$userid."', '".$message."', '".$username."')";
         // echo $sql; exit;
         execSQL($sql);
+
+        $url  = empty($_SERVER["HTTPS"]) ? "http://" : "https://";
+        $url .= $_SERVER["HTTP_HOST"] . "/sender.php?tableId=".$roomid."&type=chat";
+        file_get_contents($url);
     }
 ?>
         </section>
     </div>
+    <script src="js/app.js"></script>
+    <script>
+        $(function(){
+            $("#navi").html("");
+            let roomid = strDis("<?php echo $_SESSION['roomid']; ?>");
+            pusher.subscribe(roomid).bind("chat", function(data) {
+                location.reload();
+            });
+        });
+    </script>
 </body>
 </html>
