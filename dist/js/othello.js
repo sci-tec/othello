@@ -5,7 +5,7 @@ const Model = (() => {
     tableId: strDis(session_roomId), // getUrlVars().tableId
     myName: strDis(session_userName), // getUrlVars().player
     myColor: parseInt(session_myColor), // parseInt(getUrlVars().color)
-    opponentName: "",
+    // opponentName: "",
     y_Axis: 8,
     x_Axis: 8,
     black: "0",
@@ -33,6 +33,7 @@ const Model = (() => {
     result: "",
     hint: 0,
     passCount: 0,
+    members: Data.myColor !== 2 ? [Data.myName, ""] : ["", ""],
     opponentColor: () => {
       if (Data.myColor === 0) {
         return 1;
@@ -246,8 +247,9 @@ const View = (() => {
 
   return {
     dom: () => DomString,
-    showNames: (name, color) => {
-      DomString[`player${color}`].children()[1].textContent = name;
+    showNames: (nameB, colorB, nameW, colorW) => {
+      DomString[`player${colorB}`].children()[1].textContent = nameB;
+      DomString[`player${colorW}`].children()[1].textContent = nameW;
     },
     viewCurrentPlayer: color => {
       DomString.player0.removeClass(DomString.currentPlayer);
@@ -288,8 +290,6 @@ const Controller = ((model, view) => {
       initPusher();
       if (data[0].myColor !== 2) {
         sendName();
-        view.showNames(data[0].myName, data[0].myColor);
-        view.showNames(data[0].opponentName, data[1].opponentColor());
       }
       refresh();
     }
@@ -340,36 +340,137 @@ const Controller = ((model, view) => {
     if (data[1].hint === 0 && data[1].result === "") {
       refresh();
     }
+    if (amIBlack()) shareToPusher();
   };
 
-  const initPusher = () => {
-    pusher.subscribe(data[0].tableId).bind("plot", function(data) {
-      if (
-        model.getData()[1].cells[data.y][data.x].hint !== "" &&
-        model.getData()[1].cells[data.y][data.x].contents === ""
-      ) {
-        model.flip(strDis(data.x), strDis(data.y), strDis(data.color));
-        refresh();
-        canClick = true;
-      }
+  const shareToPusher = () => {
+    let shareData = getShareData();
+    // let url = `./sender.php?tableId=${data[0].tableId}&type=update&black=${shareData.black}&white=${shareData.white}&currentColor=${shareData.currentColor}&cells=${shareData.cells}`;
+    let url = `./sender.php?tableId=${data[0].tableId}&type=update&currentColor=${shareData.currentColor}&cells=${shareData.cells}`;
+    // console.log(url);
+    $.get(url, function(_, status) {
+      if (status != "success") console.log("送信エラー");
     });
-    pusher.subscribe(data[0].tableId).bind("finish", function(data) {
+  };
+
+  const getShareData = () => {
+    var retVal;
+    var stringCells = "";
+    // let myName = model.getData()[0].myName;
+    // let opponentName = model.getData()[0].opponentName;
+    let currentColor = model.getData()[1].currentColor;
+    model.getData()[1].cells.forEach((row, y) => {
+      row.forEach((item, x) => {
+        if (y !== 0 || x !== 0) stringCells += "";
+        stringCells += `${item.contents || "n"}${item.hint || "n"}`;
+      });
+    });
+
+    if (amIBlack()) {
+      retVal = {
+        // black: myName,
+        // white: opponentName,
+        currentColor: currentColor,
+        cells: stringCells
+      };
+    } else {
+      retVal = {
+        // black: opponentName,
+        // white: myName,
+        currentColor: currentColor,
+        cells: stringCells
+      };
+    }
+    return retVal;
+  };
+
+  const getArrayFromShareData = cells => {
+    var arr = [];
+    for (var i = 0; i < cells.length; i += 2) arr.push(cells.substr(i, 2));
+    var retVal = [];
+    for (var y = 0; y < model.getData()[0].y_Axis; y++) {
+      var row = [];
+      for (var x = 0; x < model.getData()[0].x_Axis; x++) {
+        let idx = y * 8 + x;
+        let contents =
+          arr[idx].substr(0, 1) === "n" ? "" : arr[idx].substr(0, 1);
+        let hint = arr[idx].substr(1, 1) === "n" ? "" : arr[idx].substr(1, 1);
+        row.push({ x: x, y: y, contents: contents, hint, hint });
+      }
+      retVal.push(row);
+    }
+    return retVal;
+  };
+
+  const refreshWithData = (currentColor, cells) => {
+    if (!amIBlack()) {
+      model.getData()[1].currentColor = currentColor;
+      model.getData()[1].cells = cells;
+      refresh();
+    }
+  };
+
+  const amIBlack = () => model.getData()[0].myColor == model.getData()[0].black;
+
+  const initPusher = () => {
+    var sendNameCount = 0;
+    var channel = pusher.subscribe(data[0].tableId);
+    channel.bind("pusher:subscription_succeeded", function(members) {
+      // alert('successfully subscribed!');
+    });
+    channel.bind("update", function(data) {
+      // let nameBlack = data.black;
+      // let nameWhite = data.white;
+      let currentColor = data.currentColor;
+      let cells = getArrayFromShareData(data.cells);
+      // refreshWithData(nameBlack, nameWhite, currentColor, cells);
+      refreshWithData(currentColor, cells);
+    });
+    channel.bind("plot", function(data) {
+      if (amIBlack()) {
+        if (
+          model.getData()[1].cells[data.y][data.x].hint !== "" &&
+          model.getData()[1].cells[data.y][data.x].contents === ""
+        ) {
+          model.flip(strDis(data.x), strDis(data.y), strDis(data.color));
+          refresh();
+        }
+      }
+      canClick = true;
+    });
+    channel.bind("finish", function(data) {
       if (model.getData()[1].result !== "") {
         dom.cover.css("display", "block");
         canClick = true;
       }
     });
-    pusher.subscribe(data[0].tableId).bind("restart", function(data) {
+    channel.bind("restart", function(data) {
       if (model.getData()[1].result !== "") {
         reset();
         canClick = true;
       }
     });
-    pusher.subscribe(data[0].tableId).bind("name", function(data) {
-      if (model.getData()[0].opponentName === "") {
-        model.getData()[0].opponentName = data.name;
-        sendName();
-        canClick = true;
+    channel.bind("name", function(data) {
+      let members = model.getData()[1].members;
+      if (model.getData()[0].myColor === 2) {
+        members[data.color] = data.name;
+        if (members[0] !== "" && members[1] !== "") {
+          let player0 = members[0];
+          let player1 = members[1];
+          view.showNames(player0, 0, player1, 1);
+        }
+      } else if (sendNameCount < 1 && data.name !== model.getData()[0].myName) {
+        members[1] = data.name;
+        if (members[0] !== "") {
+          sendNameCount++;
+          let myName = members[0];
+          let opponentName = members[1];
+          let myColor = model.getData()[0].myColor;
+          let opponentColor = model.getData()[1].opponentColor();
+          view.showNames(myName, myColor, opponentName, opponentColor);
+          sendName();
+          canClick = true;
+        }
       }
     });
   };
@@ -423,7 +524,9 @@ const Controller = ((model, view) => {
   };
 
   const sendName = () => {
-    let url = `./sender.php?tableId=${data[0].tableId}&type=name&name=${session_userName}`;
+    // console.log(data[0], model.getData()[0]);
+    let getData = model.getData()[0];
+    let url = `./sender.php?tableId=${getData.tableId}&type=name&name=${session_userName}&color=${getData.myColor}`;
     $.get(url, function(_, status) {
       if (status != "success") console.log("送信エラー");
     });
