@@ -5,7 +5,7 @@ const Model = (() => {
     tableId: strDis(session_roomId), // getUrlVars().tableId
     myName: strDis(session_userName), // getUrlVars().player
     myColor: parseInt(session_myColor), // parseInt(getUrlVars().color)
-    // opponentName: "",
+    opponentName: "",
     y_Axis: 8,
     x_Axis: 8,
     black: "0",
@@ -345,8 +345,8 @@ const Controller = ((model, view) => {
 
   const shareToPusher = () => {
     let shareData = getShareData();
-    // let url = `./sender.php?tableId=${data[0].tableId}&type=update&black=${shareData.black}&white=${shareData.white}&currentColor=${shareData.currentColor}&cells=${shareData.cells}`;
-    let url = `./sender.php?tableId=${data[0].tableId}&type=update&currentColor=${shareData.currentColor}&cells=${shareData.cells}`;
+    let url = `./sender.php?tableId=${data[0].tableId}&type=update&black=${shareData.black}&white=${shareData.white}&currentColor=${shareData.currentColor}&cells=${shareData.cells}`;
+    // let url = `./sender.php?tableId=${data[0].tableId}&type=update&currentColor=${shareData.currentColor}&cells=${shareData.cells}`;
     // console.log(url);
     $.get(url, function(_, status) {
       if (status != "success") console.log("送信エラー");
@@ -356,8 +356,8 @@ const Controller = ((model, view) => {
   const getShareData = () => {
     var retVal;
     var stringCells = "";
-    // let myName = model.getData()[0].myName;
-    // let opponentName = model.getData()[0].opponentName;
+    let myName = model.getData()[1].members[0];
+    let opponentName = model.getData()[1].members[1];
     let currentColor = model.getData()[1].currentColor;
     model.getData()[1].cells.forEach((row, y) => {
       row.forEach((item, x) => {
@@ -368,15 +368,15 @@ const Controller = ((model, view) => {
 
     if (amIBlack()) {
       retVal = {
-        // black: myName,
-        // white: opponentName,
+        black: myName,
+        white: opponentName,
         currentColor: currentColor,
         cells: stringCells
       };
     } else {
       retVal = {
-        // black: opponentName,
-        // white: myName,
+        black: opponentName,
+        white: myName,
         currentColor: currentColor,
         cells: stringCells
       };
@@ -402,10 +402,11 @@ const Controller = ((model, view) => {
     return retVal;
   };
 
-  const refreshWithData = (currentColor, cells) => {
+  const refreshWithData = (black, white, currentColor, cells) => {
     if (!amIBlack()) {
       model.getData()[1].currentColor = currentColor;
       model.getData()[1].cells = cells;
+      view.showNames(black, 0, white, 1);
       refresh();
     }
   };
@@ -419,12 +420,13 @@ const Controller = ((model, view) => {
       // alert('successfully subscribed!');
     });
     channel.bind("update", function(data) {
-      // let nameBlack = data.black;
-      // let nameWhite = data.white;
+      // console.log(data);
+      let nameBlack = data.black;
+      let nameWhite = data.white;
       let currentColor = data.currentColor;
       let cells = getArrayFromShareData(data.cells);
-      // refreshWithData(nameBlack, nameWhite, currentColor, cells);
-      refreshWithData(currentColor, cells);
+      refreshWithData(nameBlack, nameWhite, currentColor, cells);
+      // refreshWithData(currentColor, cells);
     });
     channel.bind("plot", function(data) {
       if (amIBlack()) {
