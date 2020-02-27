@@ -8,8 +8,8 @@
         }
     }
 
-    $username = isset($_POST["username"]) ? $_POST["username"] : "";
-    $password = isset($_POST["password"]) ? $_POST["password"] : "";
+    $username = isset($_POST["username"]) ? preg_replace('/[^0-9a-zA-Z]/', '', $_POST["username"]) : "";
+    $password = isset($_POST["password"]) ? preg_replace('/[^0-9a-zA-Z]/', '', $_POST["password"]) : "";
 
     $userid = checkLogin($username, $password); 
     if($userid != null){

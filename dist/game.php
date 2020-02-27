@@ -3,9 +3,9 @@
 session_start();
 $username = $_SESSION['username'];
 $userid = $_SESSION['userid'];
-$_SESSION['roomid'] = $_POST['roomid'];
-$_SESSION['roomname'] = $_POST['roomname'];
-$_SESSION['mycolor'] = $_POST['mycolor'];
+$_SESSION['roomid'] = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['roomid']);
+$_SESSION['roomname'] = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['roomname']);
+$_SESSION['mycolor'] = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['mycolor']);
 $roomid = $_SESSION['roomid'];
 $mycolor = $_SESSION['mycolor'];
 $roomname = $_SESSION['roomname'];
