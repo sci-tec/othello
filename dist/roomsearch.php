@@ -46,7 +46,7 @@
 <?php // DBからデータ(投稿内容)を取得 
     //$stmt = select(); 
     require_once("./db.php");
-    $items = getSQLResult("select * from rooms");
+    $items = getSQLResult("select * from rooms order by id DESC");
     foreach ($items->fetchAll(PDO::FETCH_ASSOC) as $rooms) {
         $item = '<div class="item row">'
         .'<div class="room2">'.$rooms['name'].'</div>'
