@@ -1,12 +1,5 @@
 $(function(){
   let player = session_userName;
-  $('#make').on('click',function(){//＋ボタンを押したとき
-    var s = strDis($(".room").val())
-    console.log(s)
-    if( s=""){//テキストボックス内に文字の有無
-     alert("文字を入力してください。")
-    }
-  })
   $('.makes').on('click',function(){//＋ボタンを押したとき
     var s = strDis($(".room").val())
     console.log(s)
@@ -28,12 +21,16 @@ $(function(){
   })
 
   var tablesNew = [];
+  var tableIdsNew = [];
   var items = $(".item");
   for (var i= 0; i < items.length; i++){
     var tn = $(items[i]).find(".room2").html();
+    var tId = $(items[i]).find('input[name="roomid"]').val();
     tablesNew.push(tn);
+    tableIdsNew.push(tId);
   }
-  console.log(tablesNew);
+  // console.log(tablesNew);
+  // console.log(tableIdsNew);
   searchWord = function(){
       var searchText = strDis($(".room1").val())
       var targetText;
@@ -44,20 +41,22 @@ $(function(){
           targetText = searchText;
           tester = new RegExp(targetText);
           if(tester.test(tablesNew[i]) || searchText =='' ){
-            $(".roomContainer").append(getRowHTML(tablesNew[i]));
+            $(".roomContainer").append(getRowHTML(tablesNew[i], tableIdsNew[i]));
           }
         }
         $(".room1").val("");
   };
    $('#search').on('click', searchWord);
   // $('.room1').change(searchWord);
-  function getRowHTML(value) {
+  function getRowHTML(value, id) {
     return `
     <div class="item row">
-      <div class="room2">${value}</div>
-      <a href="./game.php?tableId=${value}&player=${player}&color=0" class="myButton6 black">black</a>
-      <a href="./game.php?tableId=${value}&player=${player}&color=1" class="myButton6 white">white</a>
-      <a href="./game.php?tableId=${value}&player=${player}&color=-1" class="myButton6 watching">watching</a>
-    </div>`
+    <div class="room2" >${value}</div>
+    <form method="post" action="game.php"><input type="hidden" name="mycolor" value="0"><input type="hidden" name="roomname" value="${value}"><input type="hidden" name="roomid" value="${id}"><input class="myButton6 black" type="submit" value="black"></form>
+    <form method="post" action="game.php"><input type="hidden" name="mycolor" value="1"><input type="hidden" name="roomname" value="${value}"><input type="hidden" name="roomid" value="${id}"><input class="myButton6 white" type="submit" value="white"></form>
+    <form method="post" action="game.php"><input type="hidden" name="mycolor" value="2"><input type="hidden" name="roomname" value="${value}"><input type="hidden" name="roomid" value="${id}"><input class="myButton6 watching" type="submit" value="watching"></form>
+    </div>
+    `
   }
+
 });

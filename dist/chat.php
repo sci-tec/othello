@@ -51,7 +51,7 @@
     $stmt = select(); 
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
         $name = $message['name'];
-        echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$name."：".$message['message']."</div></div>";
+        echo "<div class= profile><img src='./img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$name."：".$message['message']."</div></div>";
     }
  
     // 投稿内容を登録
@@ -61,7 +61,7 @@
         $stmt = select_new();
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $message) {
             $name = $message['name'];
-            echo "<div class= profile><img src='../img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$name."：".$message['message']."</div></div>";
+            echo "<div class= profile><img src='./img/no_image.png' alt='icon' class = 'image'><div class='bubble'>".$name."：".$message['message']."</div></div>";
         }
     }
     // DBから投稿内容を取得

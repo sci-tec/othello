@@ -63,7 +63,7 @@
     // DBから投稿内容を登録
     function insert() {
         require_once("./db.php");
-        $name = $_POST['room'];
+        $name = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['room']);
         $sql = "insert INTO rooms (name,members) VALUES ('".$name."','')";
         execSQL($sql);
     }

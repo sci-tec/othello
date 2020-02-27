@@ -1,6 +1,4 @@
 <?php
-// $winnerid = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['winnerid']);
-// $loserid = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['loserid']);
 $winnerid = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['winnerid']);
 $loserid = preg_replace('/[^0-9a-zA-Z]/', '', $_POST['loserid']);
 
